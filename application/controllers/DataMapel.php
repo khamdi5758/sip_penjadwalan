@@ -12,7 +12,7 @@ class DataMapel extends CI_Controller
 			redirect('Login');
 		}
 		$this->load->model('Mapel_Model');
-		$this->load->model('Jurusan_Model');
+		$this->load->model('Guru_Model');
 		$this->load->library('form_validation');
 	}
 	function index()
@@ -20,7 +20,7 @@ class DataMapel extends CI_Controller
 		// tampil list mapel
 		$data['mapel'] = $this->Mapel_Model->getAllData();
 		// untuk dropdown
-		$data['jurusan'] = $this->Jurusan_Model->getAllData();
+		$data['guru'] = $this->Guru_Model->getAllData();
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
@@ -45,14 +45,12 @@ class DataMapel extends CI_Controller
 
 	public function ubah($id_map)
 	{
-		// $this->form_validation->set_rules("id_map", "ID Mapel", "required|max_length[5]");
+		//$this->form_validation->set_rules("id_map", "ID Mapel", "required|max_length[5]");
 		$this->form_validation->set_rules("nm_map", "Nama Mapel", "required");
-		$this->form_validation->set_rules("kls", "Kelas", "required");
-		$this->form_validation->set_rules("beban", "Beban Jam", "required");
-		$this->form_validation->set_rules("id_jur", "Jurusan", "required");
+		$this->form_validation->set_rules("id_gur", "guru", "required");
 		if ($this->form_validation->run() == FALSE) {
 			$data['ubah'] = $this->Mapel_Model->detail_data($id_map);
-			$data['jurusan'] = $this->Jurusan_Model->getAllData();
+			$data['gumapel'] = $this->Guru_Model->getAllData();
 			$this->load->view('templates/header');
 			$this->load->view('templates/sidebar');
 			$this->load->view('mapel/ubah', $data);

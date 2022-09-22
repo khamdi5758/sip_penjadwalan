@@ -11,14 +11,14 @@ class DataGuru extends CI_Controller
 		if (!$this->session->has_userdata('id_user')) {
 			redirect('Login');
 		}
-		$this->load->model('Jadwal_Model');
+		//$this->load->model('Jadwal_Model');
 		$this->load->model('Guru_Model');
 		$this->load->library('form_validation');
 	}
 
 	public function index()
 	{
-		$data['jadwal'] = $this->Jadwal_Model->getAllDataPenjadwalan();
+		//$data['jadwal'] = $this->Jadwal_Model->getAllDataPenjadwalan();
 		$data['guru'] = $this->Guru_Model->getAllData();
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');

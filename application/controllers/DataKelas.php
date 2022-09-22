@@ -29,7 +29,11 @@ class DataKelas extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	
+	function crcode(){
+		$kode_barang = $this->Kelas_Model->CreateCode();
+    	echo $kode_barang;
+	}
+
 	public function validation_form(){
 		$this->Kelas_Model->tambah_data();
 		$this->session->set_flashdata('flash_kelas', 'Disimpan');

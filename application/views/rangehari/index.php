@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Data Range Jam</h1>
+          <h1>Data Range Hari</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Data Range Jam</li>
+            <li class="breadcrumb-item active">Data Range Hari</li>
           </ol>
         </div>
       </div>
@@ -19,14 +19,14 @@
   <section class="content">
     <!-- NOTIFIKASI -->
     <?php
-    if ($this->session->flashdata('flash_rangejam')) { ?>
+    if ($this->session->flashdata('flash_rangehari')) { ?>
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h6>
           <i class="icon fas fa-check"></i>
           Data Berhasil
           <strong>
-            <?= $this->session->flashdata('flash_rangejam');   ?>
+            <?= $this->session->flashdata('flash_rangehari');   ?>
           </strong>
         </h6>
       </div>
@@ -54,18 +54,18 @@
                       <label>Hari</label>
                       <br>
                       <?php
-                      $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum`at', 'Sabtu'];
-                      foreach ($hari as $value) {
-                        $checked = '';
-                        if (in_array($value, array_column($range_jam, 'hari'))) {
-                          $checked = 'disabled checked';
-                        }
+                      // $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum`at', 'Sabtu'];
+                      // foreach ($hari as $value) {
+                      //   $checked = '';
+                      //   if (in_array($value, array_column($range_jam, 'hari'))) {
+                      //     $checked = 'disabled checked';
+                      //   }
                       ?>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="chkJadwalHari[]" type="checkbox" id="<?= $value ?>" value="<?= $value ?>" <?= $checked ?>>
-                          <label class="form-check-label" for="<?= $value ?>"><?= $value ?></label>
+                          <input class="form-check-input" name="chkJadwalHari[]" type="checkbox" id="<?//= $value ?>" value="<?//= $value ?>" <?//= $checked ?>>
+                          <label class="form-check-label" for="<?//= $value ?>"><?//= $value ?></label>
                         </div>
-                      <?php } ?>
+                      <?php //} ?>
                     </div>
                     <div class="form-group">
                       <label for="sesi">Sesi Per Hari</label>
@@ -105,8 +105,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>jam ke </th>
-                  <th>waktu</th>
+                  <th>Nama Hari </th>
+                  <!-- <th>waktu</th> -->
                   <!-- <th>Waktu Per Sesi</th>
                   <th>Waktu Sesi Dimulai</th> 
                   <th>Action</th> -->
@@ -115,11 +115,11 @@
               <tbody>
                 <?php
                 $no = 1;
-                foreach ($range_jam as $row) { ?>
+                foreach ($range_hari as $row) { ?>
                   <tr>
                     <td><?= $no ?></td>
-                    <td><?= $row->jamke ?></td>
-                    <td><?= $row->waktu ?></td>
+                    <td><?= $row->nama_hari ?></td>
+                    <!-- <td><?//= $row->waktu ?></td> -->
                     <!-- <td><?//= $row->lama_sesi ?></td>
                     <td><?//= $row->jam_mulai ?></td> -->
                     <!--<td>

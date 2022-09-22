@@ -3,12 +3,12 @@
 /**
  * 
  */
-class RangeJam_Model extends CI_Model
+class RangeHari_Model extends CI_Model
 {
 	public function getAllData()
 	{
 		$this->db->select('*');
-		$this->db->from('jampel');
+		$this->db->from('hari');
 		return $this->db->get()->result();
 	}
 

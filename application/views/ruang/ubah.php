@@ -5,13 +5,13 @@ Content Wrapper. Contains page content -->
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1> Ubah Data Jurusan</h1>
+          <h1> Ubah Data ruang</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">Data Guru</li>
-            <li class="breadcrumb-item active">Ubah Data Guru</li>
+            <li class="breadcrumb-item">Data ruang</li>
+            <li class="breadcrumb-item active">Ubah Data ruang</li>
           </ol>
         </div>
       </div>
@@ -34,14 +34,18 @@ Content Wrapper. Contains page content -->
                 <form action="" method="post" accept-charset="utf-8">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Jurusan</label>
-                      <input type="text" class="form-control disabled" name="id_jur" value="<?= $ubah['id_jurusan'] ?>" readonly>
+                      <label for="kode ruang">Kode ruang</label>
+                      <input type="text" class="form-control disabled" name="id_ruang" value="<?= $ubah['id_ruang'] ?>" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Nama Jurusan</label>
-                      <input type="text" class="form-control"name="nm_jur" value="<?= $ubah['nama_jurusan'] ?>">
+                      <label for="nama ruang">Nama ruang</label>
+                      <input type="text" class="form-control"name="nm_ruang" value="<?= $ubah['nama_ruang'] ?>">
                     </div>
-                    <a href="<?= base_url()?>DataJurusan" class="btn btn-danger">Batal</a>
+                    <div class="form-group">
+                      <label for="kapasitas">kapasitas</label>
+                      <input type="text" class="form-control"name="kasis" value="<?= $ubah['kapasitas'] ?>">
+                    </div>
+                    <a href="<?= base_url()?>DataRuang" class="btn btn-danger">Batal</a>
                     <input type="submit" name="save" class="btn btn-primary" value="Save">
                   </div>
                   <!-- /.card-body -->

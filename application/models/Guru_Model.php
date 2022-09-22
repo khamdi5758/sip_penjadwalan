@@ -52,59 +52,59 @@ class Guru_Model extends CI_Model
 	/* 
 		* mendapatkan data guru yang melakukan request
 		*/
-	public function getDataGuruJoinRequest()
-	{
-		return $this->db->query("SELECT guru.id_guru, guru.nama_guru, request_jadwal.id_request, request_jadwal.hari FROM guru left join request_jadwal on guru.id_guru = request_jadwal.id_guru")->result();
-	}
+	// public function getDataGuruJoinRequest()
+	// {
+	// 	return $this->db->query("SELECT guru.id_guru, guru.nama_guru, request_jadwal.id_request, request_jadwal.hari FROM guru left join request_jadwal on guru.id_guru = request_jadwal.id_guru")->result();
+	// }
 
 	/* 
 		* mendapatkan data kelas berdasarkan id guru
 		*/
-	public function getDataGuruJoinKelas($id_guru)
-	{
-		$query = $this->db->query("SELECT id_kelas from tugas_guru where id_guru ='$id_guru' GROUP BY id_kelas")->result();
-		$data = [];
-		foreach ($query as $value) {
-			$data[] = $value->id_kelas;
-		}
-		return $data;
-	}
+	// public function getDataGuruJoinKelas($id_guru)
+	// {
+	// 	$query = $this->db->query("SELECT id_kelas from tugas_guru where id_guru ='$id_guru' GROUP BY id_kelas")->result();
+	// 	$data = [];
+	// 	foreach ($query as $value) {
+	// 		$data[] = $value->id_kelas;
+	// 	}
+	// 	return $data;
+	// }
 
 	/* 
 		* beban kerja guru berdasarkan id_guru
 		*/
-	public function getDataBebanKerja($id_guru)
-	{
-		$query =  $this->db->query("SELECT SUM(sisa_jam) as beban FROM `tugas_guru` where id_guru ='$id_guru'")->row()->beban;
-		return ($query) ? $query : 0;
-	}
+	// public function getDataBebanKerja($id_guru)
+	// {
+	// 	$query =  $this->db->query("SELECT SUM(sisa_jam) as beban FROM `tugas_guru` where id_guru ='$id_guru'")->row()->beban;
+	// 	return ($query) ? $query : 0;
+	// }
 
 	/* 
 		* total ketersediaan pada hari
 		*/
-	public function ketersediaanJam($kelas, $hari)
-	{
-		$query = "SELECT COUNT(id_penjadwalan) as total FROM `penjadwalan` where keterangan = 'kosong' AND (";
-		if (empty($kelas)) {
-			return 0;
-		} else {
-			foreach ($kelas as $key => $dataKelas) {
-				if ($key == 0) {
-					$query .= "id_kelas = '$dataKelas'";
-				} else {
-					$query .= " OR id_kelas = '$dataKelas'";
-				}
-			}
-			$query .= ") AND (";
-			foreach ($hari as $key => $dataHari) {
-				if ($key == 0) {
-					$query .= "hari = '$dataHari'";
-				} else {
-					$query .= " OR hari = '$dataHari'";
-				}
-			}
-			$query .= ")";
-			return $this->db->query($query)->row()->total;
-		}
-	}
+	// public function ketersediaanJam($kelas, $hari)
+	// {
+	// 	$query = "SELECT COUNT(id_penjadwalan) as total FROM `penjadwalan` where keterangan = 'kosong' AND (";
+	// 	if (empty($kelas)) {
+	// 		return 0;
+	// 	} else {
+	// 		foreach ($kelas as $key => $dataKelas) {
+	// 			if ($key == 0) {
+	// 				$query .= "id_kelas = '$dataKelas'";
+	// 			} else {
+	// 				$query .= " OR id_kelas = '$dataKelas'";
+	// 			}
+	// 		}
+	// 		$query .= ") AND (";
+	// 		foreach ($hari as $key => $dataHari) {
+	// 			if ($key == 0) {
+	// 				$query .= "hari = '$dataHari'";
+	// 			} else {
+	// 				$query .= " OR hari = '$dataHari'";
+	// 			}
+	// 		}
+	// 		$query .= ")";
+	// 		return $this->db->query($query)->row()->total;
+	// 	}
+	// }
 }

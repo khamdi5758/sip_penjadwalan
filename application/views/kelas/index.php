@@ -53,14 +53,14 @@
                   <?= validation_errors(); ?>
                   <form action="<?= base_url() ?>DataKelas/validation_form" method="post" accept-charset="utf-8">
                     <div class="card-body">
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>Kelas</label>
                         <select class="form-control" name="kelas">
                           <option value="X">X</option>
                           <option value="XI">XI</option>
                           <option value="XII">XII</option>
                         </select>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label>Jurusan</label>
@@ -72,14 +72,19 @@
                         </select>
                       </div>
                       <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" class="form-control" id="kelas" name="kelas">
+                      </div>
+
+                      <!-- <div class="form-group">
                         <label for="exampleInputEmail1">Nama kelas</label>
                         <select name="nm_kelas" class="form-control">
                           <?php
-                          foreach (range('1', '4') as $char) { ?>
-                            <option value="<?= $char ?>"><?= $char  ?></option>
-                          <?php } ?>
+                          //foreach (range('1', '4') as $char) { ?>
+                            <option value="<?//= $char ?>"><?//= $char  ?></option>
+                          <?php //} ?>
                         </select>
-                      </div>
+                      </div> -->
                       <input type="submit" name="save" class="btn btn-primary" value="Save">
                     </div>
                     <!-- /.card-body -->
@@ -106,9 +111,10 @@
                 <thead>
                   <tr>
                     <th>No</th>
+                    <th>id kelas</th>
                     <th>kelas</th>
                     <th>Jurusan</th>
-                    <th>Nama Kelas</th>
+                    <!-- <th>Nama Kelas</th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -118,9 +124,10 @@
                   foreach ($kelas as $row) { ?>
                     <tr>
                       <td><?= $no ?></td>
+                      <td><?= $row->id_kelas ?></td>
                       <td><?= $row->kelas ?></td>
                       <td><?= $row->nama_jurusan ?></td>
-                      <td><?= $row->nama_kelas ?></td>
+                      <!-- <td><?//= $row->nama_kelas ?></td> -->
                       <td>
                         <a href="<?= base_url() ?>DataKelas/hapus/<?= $row->id_kelas ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>
                       </td>
@@ -139,13 +146,13 @@
         <!-- /.col -->
       </div>
     <?php }
-    if (empty($jurusan)) {
-      echo '<div class="alert alert-danger alert-dismissible">';
-      echo '<button type="button" class="close" data-dismiss="alert";aria-hidden="true">×</button>';
-      echo '<h5><i class="fas fa-times"></i> Alert!</h5>';
-      echo 'data Jurusan Belum Terisi';
-      echo '</div>';
-    }
+    // if (empty($jurusan)) {
+    //   echo '<div class="alert alert-danger alert-dismissible">';
+    //   echo '<button type="button" class="close" data-dismiss="alert";aria-hidden="true">×</button>';
+    //   echo '<h5><i class="fas fa-times"></i> Alert!</h5>';
+    //   echo 'data Jurusan Belum Terisi';
+    //   echo '</div>';
+    // }
     ?>
 
     <!-- /.row -->

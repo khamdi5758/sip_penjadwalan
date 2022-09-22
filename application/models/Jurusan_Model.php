@@ -10,10 +10,27 @@ class Jurusan_Model extends CI_Model
 		return $this->db->get('jurusan')->result();
 	}
 
+	public function CreateCode(){
+		$this->db->select('RIGHT(jurusan.id_jurusan,5) as id_jurusan', FALSE);
+		$this->db->order_by('id_jurusan','DESC');    
+		$this->db->limit(1);    
+		$query = $this->db->get('jurusan');
+			if($query->num_rows() <> 0){      
+				 $data = $query->row();
+				 $kode = intval($data->id_jurusan) + 1; 
+			}
+			else{      
+				 $kode = 1;  
+			}
+		$batas = str_pad($kode, 5, "0", STR_PAD_LEFT);    
+		$kodetampil = "jrs".$batas;
+		return $kodetampil;  
+	}
+
 	public function tambah_data()
 	{
 		$data = array(
-			'id_jurusan' => $this->input->post('id_jur', true),
+			'id_jurusan' => $this->CreateCode(),
 			'nama_jurusan' => $this->input->post('nm_jur', true)
 		);
 

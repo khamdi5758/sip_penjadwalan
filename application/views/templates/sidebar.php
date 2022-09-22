@@ -57,22 +57,31 @@
           </a>
         </li>
 
-        <!-- data guru -->
         <li class="nav-item">
+          <a href="<?= base_url() ?>DataRuang" class="nav-link">
+            <i class="fas fa-book-open"></i>
+            <p>
+              Data Ruang
+            </p>
+          </a>
+        </li>
+        
+        <!-- data guru -->
+        <!-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="fas fa-user"></i>
             <p> Guru <i class="right fas fa-angle-left"></i></p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview">-->
             <li class="nav-item">
-              <a href="<?= base_url() ?>DataGuru" class="nav-link ml-3">
+              <a href="<?= base_url() ?>DataGuru" class="nav-link">
                 <i class="fas fa-user-tie"></i>
                 <p>
                   Data Guru
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a href="<?= base_url() ?>DataPenugasanGuru" class="nav-link ml-3">
                 <i class="fas fa-chalkboard-teacher"></i>
                 <p>Penugasan Guru</p>
@@ -87,7 +96,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <!-- Range Jam -->
         <li class="nav-item">
           <a href="<?= base_url() ?>DataRangeJam" class="nav-link">
@@ -97,15 +106,24 @@
             </p>
           </a>
         </li>
-        <!-- Jadwal Khusus -->
         <li class="nav-item">
-          <a href="<?= base_url() ?>DataJadwalKhusus  " class="nav-link">
+          <a href="<?= base_url() ?>DataRangeHari" class="nav-link">
+            <i class="fas fa-table"></i>
+            <p>
+              Range Hari
+            </p>
+          </a>
+        </li>
+        <!-- Jadwal Khusus -->
+        <!-- <li class="nav-item">
+          <a href="<?//= base_url() ?>DataJadwalKhusus  " class="nav-link">
             <i class="fas fa-table"></i>
             <p>
               Jadwal Khusus
             </p>
           </a>
-        </li>
+        </li> -->
+
         <!-- Penjadwalan -->
         <li class="nav-item">
           <a href="<?= base_url() ?>DataJadwal" class="nav-link">

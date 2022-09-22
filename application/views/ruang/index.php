@@ -4,12 +4,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Data Jurusan</h1>
+          <h1>Data ruang</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Data Jurusan</li>
+            <li class="breadcrumb-item active">Data ruang</li>
           </ol>
         </div>
       </div>
@@ -21,14 +21,14 @@
   <section class="content">
     <!-- NOTIFIKASI -->
     <?php
-    if ($this->session->flashdata('flash_jurusan')) { ?>
+    if ($this->session->flashdata('flash_ruang')) { ?>
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h6>
           <i class="icon fas fa-check"></i>
           Data Berhasil
           <strong>
-            <?= $this->session->flashdata('flash_jurusan');   ?>
+            <?= $this->session->flashdata('flash_ruang');   ?>
           </strong>
         </h6>
       </div>
@@ -50,15 +50,19 @@
             <div class="row">
               <div class="col-md-8">
                 <?= validation_errors(); ?>
-                <form action="<?= base_url() ?>DataJurusan/validation_form" method="post" accept-charset="utf-8">
+                <form action="<?= base_url() ?>Dataruang/validation_form" method="post" accept-charset="utf-8">
                   <div class="card-body">
                     <!-- <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Jurusan</label>
+                      <label for="exampleInputEmail1">Kode ruang</label>
                       <input type="text" class="form-control" id="exampleInputEmail1" name="id_jur">
                     </div> -->
                     <div class="form-group">
-                      <label for="nama jurusan">Nama Jurusan</label>
-                      <input type="text" class="form-control" id="nama jurusan" name="nm_jur">
+                      <label for="namaruang">Nama ruang</label>
+                      <input type="text" class="form-control" id="namaruang" name="nm_ruang">
+                    </div>
+                    <div class="form-group">
+                      <label for="kapasitas">kapasitas</label>
+                      <input type="text" class="form-control" id="kapasitas" name="kasis">
                     </div>
                     <input type="submit" name="save" class="btn btn-primary" value="Save">
                   </div>
@@ -86,23 +90,25 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode Jurusan</th>
-                  <th>Jurusan</th>
+                  <th>Kode ruang</th>
+                  <th>ruang</th>
+                  <th>kapasitas</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no = 1;
-                foreach ($jurusan as $row) { ?>
+                foreach ($ruang as $row) { ?>
                   <tr>
                     <td><?= $no ?></td>
-                    <td><?= $row->id_jurusan ?></td>
-                    <td><?= $row->nama_jurusan ?></td>
+                    <td><?= $row->id_ruang ?></td>
+                    <td><?= $row->nama_ruang ?></td>
+                    <td><?= $row->kapasitas ?></td>
                     <td>
                       <div class="btn-group">
-                        <a href="<?= base_url() ?>DataJurusan/hapus/<?= $row->id_jurusan ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>
-                        <a href="<?= base_url() ?>DataJurusan/ubah/<?= $row->id_jurusan ?>" class="btn btn-warning">update</a>
+                        <a href="<?= base_url() ?>Dataruang/hapus/<?= $row->id_ruang ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>
+                        <a href="<?= base_url() ?>Dataruang/ubah/<?= $row->id_ruang ?>" class="btn btn-warning">update</a>
                       </div>
                     </td>
                   </tr>

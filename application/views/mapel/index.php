@@ -35,15 +35,15 @@
     <?php } ?>
     <!-- tambah data -->
     <?php
-    if (empty($jurusan)) {
-      echo '<div class="alert alert-danger alert-dismissible">';
-      echo '<button type="button" class="close" data-dismiss="alert" ;aria-hidden="true">×</button>';
-      echo '<h5><i class="fas fa-times"></i> Alert!</h5>';
-      echo 'data Jurusan Belum Terisi';
-      echo '</div>';
-    }
+    // if (empty($jurusan)) {
+    //   echo '<div class="alert alert-danger alert-dismissible">';
+    //   echo '<button type="button" class="close" data-dismiss="alert" ;aria-hidden="true">×</button>';
+    //   echo '<h5><i class="fas fa-times"></i> Alert!</h5>';
+    //   echo 'data Jurusan Belum Terisi';
+    //   echo '</div>';
+    // }
     ?>
-    <?php if (!empty($jurusan)) : ?>
+    <?php //if (!empty($jurusan)) : ?>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -64,55 +64,64 @@
                     <div class="card-body">
 
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Kode Mapel</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="kd_map">
+                        <label for="kdmapel">Kode Mapel</label>
+                        <input type="text" class="form-control" id="kdmapel" name="kd_map">
                       </div>
 
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Nama Mapel</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" name="nm_map">
+                        <label for="nmmapel">Nama Mapel</label>
+                        <input type="text" class="form-control" id="nmmapel" name="nm_map">
                       </div>
 
                       <div class="form-group">
+                      <label for="exampleInputPassword1">Guru Mapel</label>
+                          <select class="form-control" name="id_gur">
+                          <?php foreach ($guru as $gurumapel) { ?>
+                            <option value="<?= $gurumapel->id_guru ?>"><?= $gurumapel->nama_guru ?></option>
+                            <?php } ?>
+                          </select>
+                      </div>
+
+                      <!-- <div class="form-group">
 
                         <label for="exampleInputEmail1">Kelas</label>
                         <br>
                         <?php
-                        $kls = ['X', 'XI', 'XII'];
-                        foreach ($kls as $valueKls) { ?>
+                        //$kls = ['X', 'XI', 'XII'];
+                        //foreach ($kls as $valueKls) { ?>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="chkKelas[]" type="checkbox" id="<?= $valueKls ?>" value="<?= $valueKls ?>">
-                            <label class="form-check-label" for="<?= $valueKls ?>"><?= $valueKls ?></label>
+                            <input class="form-check-input" name="chkKelas[]" type="checkbox" id="<?//= $valueKls ?>" value="<?//= $valueKls ?>">
+                            <label class="form-check-label" for="<?//= $valueKls ?>"><?//= $valueKls ?></label>
                           </div>
-                        <?php } ?>
-                        <!-- <input type="text" class="form-control" id="exampleInputEmail1" name="kls"> -->
-                      </div>
+                        <?php //} ?>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="kls">
+                      </div> -->
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="exampleInputEmail1">Beban Jam</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="beban">
-                      </div>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="id_gur">
+                      </div> -->
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>Jurusan</label>
 
                         <br>
                         <?php
-                        foreach ($jurusan as $jur) { ?>
+                        //foreach ($jurusan as $jur) { ?>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="chkJurusan[]" type="checkbox" id="<?= $jur->id_jurusan ?>" value="<?= $jur->id_jurusan ?>">
-                            <label class="form-check-label" for="<?= $jur->id_jurusan ?>"><?= $jur->nama_jurusan  ?></label>
+                            <input class="form-check-input" name="chkJurusan[]" type="checkbox" id="<?//= $jur->id_jurusan ?>" value="<?//= $jur->id_jurusan ?>">
+                            <label class="form-check-label" for="<?//= $jur->id_jurusan ?>"><?//= $jur->nama_jurusan  ?></label>
                           </div>
-                        <?php } ?>
+                        <?php //} ?>
 
-                        <!-- <select class="form-control" name="id_jur">
+                         <select class="form-control" name="id_jur">
                           <?php
-                          foreach ($jurusan as $jur) { ?>
-                            <option value="<?= $jur->id_jurusan ?>"><?= $jur->nama_jurusan ?></option>
-                          <?php } ?>
-                        </select> -->
-                      </div>
-                      <div class="form-group">
+                          //foreach ($jurusan as $jur) { ?>
+                            <option value="<?//= $jur->id_jurusan ?>"><?//= $jur->nama_jurusan ?></option>
+                          <?php //} ?>
+                        </select> 
+                      </div> -->
+                      <!-- <div class="form-group">
                         <label for="exampleInputEmail1">Kelompok Mapel</label>
                         <select class="form-control" name="kelompok_mapel">
                           <option value="A">A </option>
@@ -120,7 +129,7 @@
                           <option value="C">C </option>
                           <option value="D">D </option>
                         </select>
-                      </div>
+                      </div> -->
 
                       <input type="submit" name="save" class="btn btn-primary" value="Save">
                     </div>
@@ -150,11 +159,8 @@
                     <th>No</th>
                     <th>Kode Mapel</th>
                     <th>Nama Mapel</th>
-                    <th>Kelas</th>
-                    <th>Beban Jam</th>
-                    <th>Jurusan</th>
-                    <th>Kelompok Mapel</th>
-                    <th>Action</th>
+                    <th>Guru</th>
+                    <th>aksi</th>
                   </tr>
                 </thead>
 
@@ -164,12 +170,9 @@
                   foreach ($mapel as $row) { ?>
                     <tr>
                       <td><?= $no ?></td>
-                      <td><?= $row->kode_mapel ?></td>
+                      <td><?= $row->id_mapel ?></td>
                       <td><?= $row->nama_mapel ?></td>
-                      <td><?= $row->kelas ?></td>
-                      <td><?= $row->beban_jam ?></td>
-                      <td><?= $row->id_jurusan ?></td>
-                      <td><?= $row->kelompok_mapel ?></td>
+                      <td><?= $row->nama_guru ?></td>
                       <td>
                         <div class="btn-group">
                           <a href="<?= base_url() ?>DataMapel/hapus/<?= $row->id_mapel ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>
@@ -190,7 +193,7 @@
         </div>
         <!-- /.col -->
       </div>
-    <?php endif; ?>
+    <?php //endif; ?>
 
     <!-- /.row -->
   </section>

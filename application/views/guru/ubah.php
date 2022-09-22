@@ -90,7 +90,7 @@
                       <label for="exampleInputPassword1">Kode Warna</label>
                       <input type="color" class="form-control" name="code_color" value="<?= $ubah['code_color'] ?>">
                     </div>
-
+                    <a href="<?= base_url()?>DataGuru" class="btn btn-danger">Batal</a>
                     <input type="submit" name="save" class="btn btn-primary" value="Save">
                   </div>
                   <!-- /.card-body -->

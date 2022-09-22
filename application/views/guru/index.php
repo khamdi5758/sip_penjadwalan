@@ -155,15 +155,15 @@
                         <a href="<?= base_url() ?>DataGuru/hapus/<?= $row->id_guru ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>
                         <a href="<?= base_url() ?>DataGuru/ubah/<?= $row->id_guru ?>" class="btn btn-warning">update</a>
                         <?php
-                        foreach ($jadwal as $value) {
-                          if ($value->id_guru == $row->id_guru) {
+                        // foreach ($jadwal as $value) {
+                        //   if ($value->id_guru == $row->id_guru) {
                         ?>
-                            <a href="<?= base_url() ?>DataJadwal/pdf/<?= $row->id_guru ?>" class="btn btn-primary" disabled>Lihat Jadwal</a>
+                            <!-- <a href="<?//= base_url() ?>DataJadwal/pdf/<?//= $row->id_guru ?>" class="btn btn-primary" disabled>Lihat Jadwal</a> -->
 
                         <?php
-                            break;
-                          }
-                        }
+                          //   break;
+                          // }
+                        // }
                         ?>
                       </div>
                     </td>

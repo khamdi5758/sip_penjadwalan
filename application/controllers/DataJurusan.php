@@ -15,6 +15,11 @@ class DataJurusan extends CI_Controller
 		$this->load->library('form_validation');
 	}
 
+	public function crcode(){
+		$code = $this->Jurusan_Model->Createcode();
+		echo $code;
+	}
+
 	function index()
 	{
 		$data['jurusan'] = $this->Jurusan_Model->getAllData();
@@ -26,7 +31,7 @@ class DataJurusan extends CI_Controller
 
 	public function validation_form()
 	{
-		$this->form_validation->set_rules("id_jur", "Kode Jurusan", "required|is_unique[jurusan.id_jurusan]|max_length[20]");
+		// $this->form_validation->set_rules("id_jur", "Kode Jurusan", "required|is_unique[jurusan.id_jurusan]|max_length[20]");
 		$this->form_validation->set_rules("nm_jur", "Nama Jurusan", "required|is_unique[jurusan.nama_jurusan]");
 		if ($this->form_validation->run() == FALSE) {
 			$this->index();
@@ -46,7 +51,7 @@ class DataJurusan extends CI_Controller
 
 	public function ubah($id)
 	{
-		$this->form_validation->set_rules("id_jur", "Kode Jurusan", "required|max_length[20]");
+		// $this->form_validation->set_rules("id_jur", "Kode Jurusan", "required|max_length[20]");
 		$this->form_validation->set_rules("nm_jur", "Nama Jurusan", "required");
 		if ($this->form_validation->run() == FALSE) {
 			$data['ubah'] = $this->Jurusan_Model->detail_data($id);

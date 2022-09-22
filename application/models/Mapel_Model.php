@@ -10,70 +10,56 @@ class Mapel_Model extends CI_Model
 	public function getAllData($grup = false)
 	{
 
-		$this->db->select('id_mapel, kode_mapel, nama_mapel, kelas, beban_jam, jurusan.id_jurusan, kelompok_mapel');
+		$this->db->select('mapel.id_mapel, mapel.nama_mapel,mapel.id_guru, guru.nama_guru');
 		$this->db->from('mapel');
-		$this->db->join('jurusan', 'jurusan.id_jurusan = mapel.id_jurusan');
-		if ($grup) {
-			$this->db->group_by('kode_mapel');
-		}
+		$this->db->join('guru', 'guru.id_guru = mapel.id_guru');
+		// if ($grup) {
+		// 	$this->db->group_by('kode_mapel');
+		// }
 		// $this->db->order_by('kode_mapel', 'ASC');
 		return $this->db->get()->result();
 	}
 
-	public function getMapel()
-	{
-		return $this->db->query("SELECT * FROM `mapel` inner join kelas on (mapel.kelas = kelas.kelas && mapel.id_jurusan = kelas.id_jurusan) ORDER BY `mapel`.`kode_mapel` ASC ")->result();
-	}
+	// public function getMapel()
+	// {
+	// 	return $this->db->query("SELECT * FROM `mapel` inner join kelas on (mapel.kelas = kelas.kelas && mapel.id_jurusan = kelas.id_jurusan) ORDER BY `mapel`.`kode_mapel` ASC ")->result();
+	// }
 
 	public function getMapelbyKodeMapel($kodeMapel)
 	{
 		return $this->db->get_where('mapel', ['kode_mapel' => $kodeMapel])->row('nama_mapel');
 	}
 
-	public function listDataMapel()
-	{
-		$this->db->group_by('kode_mapel');
-		$this->db->order_by('id_mapel', 'ASC');
-		return $this->db->get('mapel')->result();
-	}
+	// public function listDataMapel()
+	// {
+	// 	$this->db->group_by('kode_mapel');
+	// 	$this->db->order_by('id_mapel', 'ASC');
+	// 	return $this->db->get('mapel')->result();
+	// }
 
-	public function getDataMapelByKodeMapel($kodeMapel)
-	{
-		return $this->db->get_where('mapel', ['kode_mapel' => $kodeMapel])->result();
-	}
+	// public function getDataMapelByKodeMapel($kodeMapel)
+	// {
+	// 	return $this->db->get_where('mapel', ['kode_mapel' => $kodeMapel])->result();
+	// }
 
 	public function getAllData_jurusan()
 	{
 		return $this->db->get('jurusan')->result();
 	}
 
-	public function tambah_data()
+	public function checkExist($kode_mapel,  $nama_mapel, $id_gur)
 	{
-		foreach ($this->input->post('chkKelas') as $valueKls) {
-			foreach ($this->input->post('chkJurusan') as $valueJur) {
-				$data = [
-					'kode_mapel' => $this->input->post('kd_map'),
-					'nama_mapel' => $this->input->post('nm_map'),
-					'kelompok_mapel' => $this->input->post('kelompok_mapel'),
-					'kelas' => $valueKls,
-					'beban_jam' => $this->input->post('beban'),
-					'id_jurusan' => $valueJur
-				];
-				if ($this->checkExist($this->input->post('kd_map'), $this->input->post('kelompok_mapel'), $valueKls, $this->input->post('beban'), $valueJur)) {
-					$this->db->insert('mapel', $data);
-				}
-			}
-		}
-	}
-
-	public function checkExist($kode_mapel, $kelompok_mapel, $kelas, $beban_jam, $id_jurusan)
-	{
+		// $data = [
+		// 	'kode_mapel' => $kode_mapel,
+		// 	'kelompok_mapel' => $kelompok_mapel,
+		// 	'kelas' => $kelas,
+		// 	'beban_jam' => $beban_jam,
+		// 	'id_jurusan' => $id_jurusan
+		// ];
 		$data = [
-			'kode_mapel' => $kode_mapel,
-			'kelompok_mapel' => $kelompok_mapel,
-			'kelas' => $kelas,
-			'beban_jam' => $beban_jam,
-			'id_jurusan' => $id_jurusan
+			'id_mapel' => $kode_mapel,
+			'nama_mapel' => $nama_mapel,
+			'id_guru' => $id_gur
 		];
 		$query = $this->db->get_where('mapel', $data)->num_rows();
 		if ($query > 0) {
@@ -107,6 +93,18 @@ class Mapel_Model extends CI_Model
 	// }
 	// }
 
+	public function tambah_data()
+	{
+				$data = [
+					'id_mapel' => $this->input->post('kd_map'),
+					'nama_mapel' => $this->input->post('nm_map'),
+					'id_guru' => $this->input->post('id_gur')
+				];
+				// if ($this->checkExist($this->input->post('kd_map'), $this->input->post('kelompok_mapel'), $valueKls, $this->input->post('beban'), $valueJur)) {
+					$this->db->insert('mapel', $data);
+				//}
+	}
+
 	public function hapus_data($id)
 	{
 		$this->db->delete('mapel', ['id_mapel' => $id]);
@@ -114,18 +112,24 @@ class Mapel_Model extends CI_Model
 
 	public function ubah_data()
 	{
-		$data = array(
-			'kode_mapel' => $this->input->post('kd_map', true),
-			'nama_mapel' => $this->input->post('nm_map', true),
-			'kelas' => $this->input->post('kls', true),
-			'beban_jam' => $this->input->post('beban', true),
-			'id_jurusan' => $this->input->post('id_jur', true),
-			'kelompok_mapel' => $this->input->post('kelompok_mapel', true)
-		);
-		if ($this->checkExist($this->input->post('kd_map'), $this->input->post('kelompok_mapel'), $this->input->post('kls', true), $this->input->post('beban'), $this->input->post('id_jur', true))) {
-			$this->db->where('id_mapel', $this->input->post('id_map', true));
+		// $data = array(
+		// 	'kode_mapel' => $this->input->post('kd_map', true),
+		// 	'nama_mapel' => $this->input->post('nm_map', true),
+		// 	'kelas' => $this->input->post('kls', true),
+		// 	'beban_jam' => $this->input->post('beban', true),
+		// 	'id_jurusan' => $this->input->post('id_jur', true),
+		// 	'kelompok_mapel' => $this->input->post('kelompok_mapel', true)
+		// );
+
+		$data = [
+			//'id_mapel' => $this->input->post('kd_map',true),
+			'nama_mapel' => $this->input->post('nm_map',true),
+			'id_guru' => $this->input->post('id_gur',true)
+		];
+		// if ($this->checkExist($this->input->post('kd_map'), $this->input->post('kelompok_mapel'), $this->input->post('kls', true), $this->input->post('beban'), $this->input->post('id_jur', true))) {
+		 	$this->db->where('id_mapel', $this->input->post('id_map', true));
 			$this->db->update('mapel', $data);
-		}
+		// }
 	}
 
 

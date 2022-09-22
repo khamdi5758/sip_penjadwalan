@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Sep 2022 pada 05.32
--- Versi server: 10.1.35-MariaDB
--- Versi PHP: 7.2.9
+-- Waktu pembuatan: 23 Sep 2022 pada 00.11
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `guru` (
-  `id_guru` int(11) NOT NULL,
+  `id_guru` varchar(20) NOT NULL,
   `nama_guru` varchar(32) NOT NULL,
   `status` varchar(10) NOT NULL,
   `pendidikan_terakhir` varchar(10) NOT NULL,
@@ -43,8 +42,32 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nama_guru`, `status`, `pendidikan_terakhir`, `no_telp`, `email`, `code_color`) VALUES
-(1, 'Juki Irfansyah, S.Kom., M.Pd', 'tetap', 's2', '087', 'www@mail.com', '#f7d794'),
-(2, 'S. A. Adi Lukito, S.T', 'tetap', 's1', '085', 'www@mail.com', '#778beb');
+('1', 'Juki Irfansyah, S.Kom., M.Pd', 'tetap', 's2', '087', 'www@mail.com', '#f7d794'),
+('2', 'S. A. Adi Lukito, S.T', 'tetap', 's1', '085', 'www@mail.com', '#778beb');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hari`
+--
+
+CREATE TABLE `hari` (
+  `id_hari` int(11) NOT NULL,
+  `nama_hari` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `hari`
+--
+
+INSERT INTO `hari` (`id_hari`, `nama_hari`) VALUES
+(1, 'senin'),
+(2, 'selasa'),
+(3, 'rabu'),
+(4, 'kamis'),
+(5, 'jum\'at'),
+(6, 'sabtu'),
+(7, 'minggu');
 
 -- --------------------------------------------------------
 
@@ -142,6 +165,37 @@ INSERT INTO `jadwal_khusus` (`id_jadwal_khusus`, `kelas`, `keterangan`, `sesi`, 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `jampel`
+--
+
+CREATE TABLE `jampel` (
+  `id_jampel` int(11) NOT NULL,
+  `jamke` varchar(50) NOT NULL,
+  `waktu` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jampel`
+--
+
+INSERT INTO `jampel` (`id_jampel`, `jamke`, `waktu`) VALUES
+(1, '1', '07:00-07:40'),
+(2, '2', '07:40-08:20'),
+(3, '3', '08:20-09:00'),
+(4, '4', '09:00-09:40'),
+(5, 'istirahat', '09:40-10:10'),
+(6, '5', '10:10-10:50'),
+(7, '6', '10:50--11:30'),
+(8, '7', '11:30-12:10'),
+(9, 'istirahat', '12:10-12:50'),
+(10, '8', '12:50-13:30'),
+(11, '9', '13:30-14:10'),
+(12, '10', '14:10-14:50'),
+(13, '11', '14:50-15:30');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jurusan`
 --
 
@@ -155,10 +209,9 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
-('1', 'MULTIMEDIA'),
-('2', 'RPL'),
-('3', 'AKL'),
-('4', 'DKV');
+('jrs00001', 'MULTIMEDIA'),
+('jrs00002', 'REKAYASA PERANGKAT LUNAK'),
+('jrs00003', 'DESAIN KOMUNIKASI VISUAL');
 
 -- --------------------------------------------------------
 
@@ -168,19 +221,23 @@ INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 
 CREATE TABLE `kelas` (
   `id_kelas` varchar(16) NOT NULL,
-  `kelas` varchar(3) NOT NULL,
-  `id_jurusan` varchar(5) NOT NULL,
-  `nama_kelas` varchar(10) NOT NULL
+  `kelas` varchar(150) NOT NULL,
+  `id_jurusan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `kelas`
 --
 
-INSERT INTO `kelas` (`id_kelas`, `kelas`, `id_jurusan`, `nama_kelas`) VALUES
-('K1', 'X', '1', 'X MM 1'),
-('K2', 'X', '1', 'X MM 2'),
-('K3', 'X', '1', 'X MM 3');
+INSERT INTO `kelas` (`id_kelas`, `kelas`, `id_jurusan`) VALUES
+('kls00001', 'XI MM 1', 'jrs00001'),
+('kls00002', 'XI MM 2', 'jrs00001'),
+('kls00003', 'XI MM 3', 'jrs00001'),
+('kls00004', 'XI MM 4', 'jrs00001'),
+('kls00005', 'X RPL 1', 'jrs00002'),
+('kls00006', 'X RPL 2', 'jrs00002'),
+('kls00007', 'X DKV 1', 'jrs00003'),
+('kls00008', 'X DKV 2', 'jrs00003');
 
 -- --------------------------------------------------------
 
@@ -189,22 +246,18 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `id_jurusan`, `nama_kelas`) VALUES
 --
 
 CREATE TABLE `mapel` (
-  `id_mapel` int(11) NOT NULL,
-  `kode_mapel` varchar(10) CHARACTER SET utf8mb4 NOT NULL,
+  `id_mapel` varchar(20) NOT NULL,
   `nama_mapel` varchar(255) NOT NULL,
-  `kelompok_mapel` varchar(1) NOT NULL,
-  `kelas` varchar(3) NOT NULL,
-  `beban_jam` int(11) NOT NULL,
-  `id_jurusan` varchar(20) NOT NULL
+  `id_guru` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `mapel`
 --
 
-INSERT INTO `mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`, `kelompok_mapel`, `kelas`, `beban_jam`, `id_jurusan`) VALUES
-(1, 'Pai1', 'Pendidikan Agama Islam', '1', 'X', 3, '1'),
-(86, 'Bing', 'Bahasa Inggris', 'A', 'X', 2, '1');
+INSERT INTO `mapel` (`id_mapel`, `nama_mapel`, `id_guru`) VALUES
+('3492', 'informatika', '2'),
+('86', 'Bahasa Inggris', '1');
 
 -- --------------------------------------------------------
 
@@ -213,17 +266,23 @@ INSERT INTO `mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`, `kelompok_mapel`, `
 --
 
 CREATE TABLE `penjadwalan` (
-  `id_penjadwalan` int(11) NOT NULL,
-  `id_kelas` varchar(32) NOT NULL,
-  `id_guru` varchar(11) DEFAULT NULL,
-  `id_mapel` varchar(11) DEFAULT NULL,
-  `hari` varchar(6) NOT NULL,
-  `sesi` int(11) NOT NULL,
-  `kode_jadwal` varchar(16) NOT NULL,
-  `keterangan` varchar(64) NOT NULL,
-  `jam_mulai` time NOT NULL,
-  `jam_selesai` time NOT NULL
+  `id_penjadwalan` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `id_kelas` varchar(16) CHARACTER SET latin1 NOT NULL,
+  `id_ruang` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `id_mapel` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `id_hari` int(11) NOT NULL,
+  `id_jampel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penjadwalan`
+--
+
+INSERT INTO `penjadwalan` (`id_penjadwalan`, `id_kelas`, `id_ruang`, `id_mapel`, `id_hari`, `id_jampel`) VALUES
+('jdwl00004', 'kls00001', 'rag00001', '3492', 1, 4),
+('jdwl00001', 'kls00001', 'rag00001', '86', 1, 1),
+('jdwl00002', 'kls00001', 'rag00001', '86', 1, 2),
+('jdwl00003', 'kls00001', 'rag00001', '86', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -252,6 +311,25 @@ INSERT INTO `request_jadwal` (`id_request`, `id_guru`, `hari`) VALUES
 (17, '11', 'Senin,Kamis,Sabtu'),
 (18, '14', 'Senin,Rabu,Kamis'),
 (19, '20', 'Jum`at,Sabtu');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `ruang`
+--
+
+CREATE TABLE `ruang` (
+  `id_ruang` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `nama_ruang` varchar(150) NOT NULL,
+  `kapasitas` varchar(20) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ruang`
+--
+
+INSERT INTO `ruang` (`id_ruang`, `nama_ruang`, `kapasitas`) VALUES
+('rag00001', 'banana 1', '29');
 
 -- --------------------------------------------------------
 
@@ -453,6 +531,12 @@ ALTER TABLE `guru`
   ADD PRIMARY KEY (`id_guru`);
 
 --
+-- Indeks untuk tabel `hari`
+--
+ALTER TABLE `hari`
+  ADD PRIMARY KEY (`id_hari`);
+
+--
 -- Indeks untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
@@ -465,6 +549,12 @@ ALTER TABLE `jadwal_khusus`
   ADD PRIMARY KEY (`id_jadwal_khusus`);
 
 --
+-- Indeks untuk tabel `jampel`
+--
+ALTER TABLE `jampel`
+  ADD PRIMARY KEY (`id_jampel`);
+
+--
 -- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
@@ -474,19 +564,26 @@ ALTER TABLE `jurusan`
 -- Indeks untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  ADD PRIMARY KEY (`id_kelas`);
+  ADD PRIMARY KEY (`id_kelas`),
+  ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
 -- Indeks untuk tabel `mapel`
 --
 ALTER TABLE `mapel`
-  ADD PRIMARY KEY (`id_mapel`);
+  ADD PRIMARY KEY (`id_mapel`),
+  ADD KEY `id_guru` (`id_guru`);
 
 --
 -- Indeks untuk tabel `penjadwalan`
 --
 ALTER TABLE `penjadwalan`
-  ADD PRIMARY KEY (`id_penjadwalan`);
+  ADD PRIMARY KEY (`id_penjadwalan`),
+  ADD UNIQUE KEY `id_kelas` (`id_kelas`,`id_ruang`,`id_mapel`,`id_hari`,`id_jampel`),
+  ADD KEY `id_ruang` (`id_ruang`),
+  ADD KEY `id_mapel` (`id_mapel`),
+  ADD KEY `id_jampel` (`id_jampel`),
+  ADD KEY `id_hari` (`id_hari`);
 
 --
 -- Indeks untuk tabel `request_jadwal`
@@ -494,6 +591,12 @@ ALTER TABLE `penjadwalan`
 ALTER TABLE `request_jadwal`
   ADD PRIMARY KEY (`id_request`),
   ADD KEY `id_guru` (`id_guru`);
+
+--
+-- Indeks untuk tabel `ruang`
+--
+ALTER TABLE `ruang`
+  ADD PRIMARY KEY (`id_ruang`);
 
 --
 -- Indeks untuk tabel `rumusan`
@@ -521,12 +624,6 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `guru`
---
-ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
@@ -537,18 +634,6 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `jadwal_khusus`
   MODIFY `id_jadwal_khusus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT untuk tabel `mapel`
---
-ALTER TABLE `mapel`
-  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
---
--- AUTO_INCREMENT untuk tabel `penjadwalan`
---
-ALTER TABLE `penjadwalan`
-  MODIFY `id_penjadwalan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `request_jadwal`
@@ -567,6 +652,26 @@ ALTER TABLE `rumusan`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `kelas`
+--
+ALTER TABLE `kelas`
+  ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
+
+--
+-- Ketidakleluasaan untuk tabel `penjadwalan`
+--
+ALTER TABLE `penjadwalan`
+  ADD CONSTRAINT `penjadwalan_ibfk_2` FOREIGN KEY (`id_ruang`) REFERENCES `ruang` (`id_ruang`),
+  ADD CONSTRAINT `penjadwalan_ibfk_3` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`),
+  ADD CONSTRAINT `penjadwalan_ibfk_4` FOREIGN KEY (`id_jampel`) REFERENCES `jampel` (`id_jampel`),
+  ADD CONSTRAINT `penjadwalan_ibfk_5` FOREIGN KEY (`id_hari`) REFERENCES `hari` (`id_hari`),
+  ADD CONSTRAINT `penjadwalan_ibfk_6` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
