@@ -33,6 +33,20 @@
         </h6>
       </div>
     <?php } ?>
+
+    <?php
+    if ($this->session->flashdata('gagal')) { ?>
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h6>
+          <i class="icon fas fa-window-close"></i>
+          <strong>
+            <?= $this->session->flashdata('gagal');   ?>
+          </strong>
+        </h6>
+      </div>
+    <?php } ?>
+    
     <!-- tambah data -->
     <div class="row">
       <div class="col-md-12">

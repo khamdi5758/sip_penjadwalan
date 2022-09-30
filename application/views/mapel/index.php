@@ -63,10 +63,10 @@
                   <form action="<?= base_url() ?>DataMapel/validation_form" method="post" accept-charset="utf-8">
                     <div class="card-body">
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="kdmapel">Kode Mapel</label>
                         <input type="text" class="form-control" id="kdmapel" name="kd_map">
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label for="nmmapel">Nama Mapel</label>

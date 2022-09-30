@@ -67,62 +67,81 @@ class Jadwal_Model extends CI_Model
 			$this->db->update('penjadwalan', $data);
 	}
 
-
 	public function detail_data($id)
 	{
 		return $this->db->get_where('penjadwalan', ['id_penjadwalan' => $id])->row_array();
 	}
 
-	public function cekjadwal(){
+	public function cekwaktu()
+	{
 		$hari = $this->input->post('hari',TRUE);
-		$jam = $this->input->post('jampel',TRUE);
-		$mapel = $this->input->post('mapel',TRUE);
 		$kelas = $this->input->post('kelas',TRUE);
-		$ruang = $this->input->post('ruang',TRUE);
+		$jam = $this->input->post('jampel',TRUE);
+		// $mapel = $this->input->post('mapel',TRUE);
+		// $ruang = $this->input->post('ruang',TRUE);
 		
+		$this->db->select('*');
+		$this->db->from('penjadwalan');
+		$this->db->like('id_kelas', $kelas);
+		$this->db->like('id_hari', $hari);
+		$this->db->like('id_jampel', $jam);
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	public function cekmapel()
+	{
+		$kelas = $this->input->post('kelas',TRUE);
+		$mapel = $this->input->post('mapel',TRUE);
+		$hari = $this->input->post('hari',TRUE);
 		$this->db->select('*');
 		$this->db->from('penjadwalan');
 		$this->db->like('id_kelas', $kelas);
 		$this->db->like('id_mapel', $mapel);
 		$this->db->like('id_hari', $hari);
-		$this->db->like('id_jampel', $jam);
 		$query = $this->db->get();
-		$total = $query->num_rows();
-		return $total;
-	}
-
-	public function cekhari()
-	{
-		$hari = $this->input->post('hari',TRUE);
-		$cekhari = $this->db->get_where('penjadwalan', ['id_hari' => $hari]);
-		$total = $cekhari->num_rows();
-		return $total;
+		return $query;
 		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
 		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();
 	}
+	
+	public function cekruang()
+	{
+		// $kelas = $this->input->post('kelas',TRUE);
+		$ruang = $this->input->post('ruang',TRUE);
+		$hari = $this->input->post('hari',TRUE);
+		$jam = $this->input->post('jampel',TRUE);
+
+		$this->db->select('*');
+		$this->db->from('penjadwalan');
+		// $this->db->like('id_kelas', $kelas);
+		$this->db->like('id_ruang', $ruang);
+		$this->db->like('id_hari', $hari);
+		$this->db->like('id_jampel', $jam);
+		$query = $this->db->get();
+		return $query;
+		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
+		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();
+	}
+
+	public function cekhari($hari)
+	{
+		// $hari = $this->input->post('hari',TRUE);
+		$this->db->select('*');
+		$this->db->from('penjadwalan');
+		$this->db->like('id_jampel', $hari);
+		$query = $this->db->get();
+		return $query->result();
+		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
+		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();
+	}
+
 	public function cekjam()
 	{
 		$jam = $this->input->post('jampel',TRUE);
 		$cekjam = $this->db->get_where('penjadwalan', ['id_jampel' => $jam]);
 		$total = $cekjam->num_rows();
-		return $total;
-		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
-		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();
-	}
-	public function cekmapel()
-	{
-		$mapel = $this->input->post('mapel',TRUE);
-		$cekmapel = $this->db->get_where('penjadwalan', ['id_mapel' => $mapel]);
-		$total = $cekmapel->num_rows();
-		return $total;
-		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
-		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();
-	}
-	public function cekruang()
-	{
-		$ruang = $this->input->post('ruang',TRUE);
-		$cekruang= $this->db->get_where('penjadwalan', ['id_ruang' => $ruang]);
-		$total = $cekruang->num_rows();
 		return $total;
 		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->result();
 		// return $this->db->get_where('penjadwalan', ['id_hari' => $hari])->row_array();

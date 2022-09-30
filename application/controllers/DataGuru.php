@@ -16,6 +16,11 @@ class DataGuru extends CI_Controller
 		$this->load->library('form_validation');
 	}
 
+	public function crcode(){
+		$code = $this->Guru_Model->Createcode();
+		echo $code;
+	}
+
 	public function index()
 	{
 		//$data['jadwal'] = $this->Jadwal_Model->getAllDataPenjadwalan();
@@ -28,19 +33,28 @@ class DataGuru extends CI_Controller
 
 	public function validation_form()
 	{
-		$this->form_validation->set_rules("id_gur", "Kode Gur", "required|is_unique[guru.id_guru]|max_length[5]");
+		// $this->form_validation->set_rules("id_gur", "Kode Gur", "required|is_unique[guru.id_guru]|max_length[5]");
 		$this->form_validation->set_rules("nama_gur", "Nama Gur", "required");
-		$this->form_validation->set_rules("status_gur", "Status Gur", "required");
-		$this->form_validation->set_rules("pendidikan_gur", "Pendidikan Gur", "required");
-		$this->form_validation->set_rules("telp_gur", "Nomor Telpon Gur", "required");
-		$this->form_validation->set_rules("email_gur", "Email Gur", "required");
-		$this->form_validation->set_rules("code_color", "code color", "required");
+		// $this->form_validation->set_rules("nip_guru", "Nip Gur", "required");
+		// $this->form_validation->set_rules("pangkat_gur", "Pangkat Gur", "required");
+		// $this->form_validation->set_rules("gol_guru", "Gol Gur", "required");
+		// $this->form_validation->set_rules("status_gur", "Status Gur", "required");
+		// $this->form_validation->set_rules("pendidikan_gur", "Pendidikan Gur", "required");
+		// $this->form_validation->set_rules("telp_gur", "Nomor Telpon Gur", "required");
+		// $this->form_validation->set_rules("email_gur", "Email Gur", "required");
 		if ($this->form_validation->run() == FALSE) {
 			$this->index();
 		} else {
 			$this->Guru_Model->tambah_data();
 			$this->session->set_flashdata('flash_guru', 'Disimpan');
 			redirect('DataGuru');
+		}
+	}
+
+	public function coba()
+	{
+		for ($i=1; $i <=12 ; $i++) { 
+			echo '$'.'capengur'.$i.' = "" ; <br>';
 		}
 	}
 
@@ -53,13 +67,12 @@ class DataGuru extends CI_Controller
 
 	public function ubah($id)
 	{
-		$this->form_validation->set_rules("id_gur", "Kode Gur", "required|max_length[5]");
+		$this->form_validation->set_rules("id_gur", "Kode Gur", "required");
 		$this->form_validation->set_rules("nama_gur", "Nama Gur", "required");
 		$this->form_validation->set_rules("status_gur", "Status Gur", "required");
 		$this->form_validation->set_rules("pendidikan_gur", "Pendidikan Gur", "required");
 		$this->form_validation->set_rules("telp_gur", "Nomor Telpon Gur", "required");
 		$this->form_validation->set_rules("email_gur", "Email Gur", "required");
-		$this->form_validation->set_rules("code_color", "code color", "required");
 		if ($this->form_validation->run() == FALSE) {
 			$data['ubah'] = $this->Guru_Model->detail_data($id);
 			$this->load->view('templates/header');

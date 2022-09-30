@@ -18,19 +18,14 @@
 	<!-- Main content -->
 	<section class="content">
 		<!-- NOTIFIKASI -->
-		<?php
-		if ($this->session->flashdata('flash_rangejam')) { ?>
-			<div class="alert alert-success alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<h6>
-					<i class="icon fas fa-check"></i>
-					Data Berhasil
-					<strong>
-						<?= $this->session->flashdata('flash_rangejam');   ?>
-					</strong>
-				</h6>
-			</div>
-		<?php } ?>
+		
+
+		
+		
+
+		
+
+		
 		<!-- /.row -->
 		<!-- list data -->
 		<?php
@@ -68,82 +63,8 @@
 			echo '</div>';
 		}
 		?>
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<!-- card-body -->
-					<div class="card-body">
-						<?php if (empty($rumusan)) { ?>
-							<?php if (!empty($penjadwalan)) { ?>
-								<a class="ml-3 btn btn-warning float-right" href="<?= base_url('DataJadwal/rumusan') ?>">Masukkan Rumusan</a>
-							<?php } ?>
-						<?php } else { ?>
-							<a class="ml-3 btn btn-danger float-left" href="<?= base_url('DataJadwal/reset_rumusan') ?>">Reset Rumusan</a>
-						<?php } ?>
-						<?php
-						if (empty($penjadwalan)) {
-							if (!empty($rangeJam)) {
-						?>
-								<a class="ml-3 btn btn-success float-right" href="<?= base_url('DataJadwal/createJadwal') ?>">Buat Jadwal</a>
 
-							<?php
-							}
-						} else {
-							?>
-							<a class="ml-3 btn btn-danger float-left" href="<?= base_url('DataJadwal/reset_Jadwal') ?>">Reset Jadwal</a>
-						<?php } ?>
-
-						<?php if (!empty($rumusan) && !empty($penjadwalan)) : ?>
-							<a class="ml-3 btn btn-warning float-right" href="<?= base_url('DataJadwal/pdf') ?>">export Penjadwalan</a>
-							<a class="ml-3 btn btn-danger float-right" href="<?= base_url('DataJadwal/reset_Penjadwalan') ?>">Reset Penjadwalan</a>
-							<a class="btn btn-success float-right" href="<?= base_url('DataJadwal/ploting_jadwal') ?>">Ploting Jadwal</a>
-							<!-- <a class="btn btn-primary" href="<?= base_url('DataJadwal/tampilJadwalSementara') ?>">tampil jadwal Sementara</a> -->
-							<!-- <a class="btn btn-primary" href="<?= base_url('DataJadwal/tampilJadwal') ?>">tampil jadwal</a> -->
-						<?php endif; ?>
-					</div>
-					<!-- /.card-body -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.col -->
-		</div>
-
-		<!-- <div class="row">
-			<div class="col-12">
-				<div class="callout callout-danger">
-					<h5>Jadwal Belum Terplot</h5>
-					<table class="table table-bordered">
-						<tr>
-							<td>Kelas</td>
-							<td>Id Guru</td>
-							<td>Nama Guru</td>
-							<td>Mapel</td>
-							<td>Beban Jam</td>
-							<td>Jumlah Yang belum Terplot</td>
-							<td>Request Jadwal</td>
-							<?php //if (!empty($rumusan) && !empty($penjadwalan)) : ?>
-								<td>Action</td>
-							<?php //endif; ?>
-						</tr>
-						<?php
-						// foreach ($belumterplot as $valueBelumterplot) : ?>
-						 	<tr>
-						 		<td><?//= $valueBelumterplot->id_kelas ?></td>
-						 		<td><?//= $valueBelumterplot->id_guru ?></td>
-						 		<td><?//= $valueBelumterplot->nama_guru ?></td>
-						 		<td><?//= $valueBelumterplot->nama_mapel ?></td>
-						 		<td><?//= $valueBelumterplot->beban_jam ?></td>
-						 		<td><?//= $valueBelumterplot->sisa_jam ?></td>
-						 		<td><?//= $valueBelumterplot->hari ?></td>
-						 		<?php //if (!empty($rumusan) && !empty($penjadwalan)) : ?>
-						 			<td><button data-tugasguru="<?//= $valueBelumterplot->id_tugas ?>" data-guru="<?//= $valueBelumterplot->nama_guru ?>" data-mapel="<?//= $valueBelumterplot->nama_mapel ?>" data-kelas="<?//= $valueBelumterplot->id_kelas ?>" data-request="<?//= $valueBelumterplot->hari ?>" class="btn btn-primary plotting">Plotting</button></td>
-						 		<?php //endif; ?>
-						 	</tr>
-						 <?php //endforeach; ?>
-					</table>
-				</div>
-			</div>
-		</div> -->
+		
 		<!-- aleet untuk ganti jadwal -->
 		<div class="row">
 			<div class="col-12">

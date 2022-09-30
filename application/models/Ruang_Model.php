@@ -26,7 +26,7 @@ class Ruang_Model extends CI_Model
 		$query = $this->db->get('ruang');
 			if($query->num_rows() <> 0){      
 				 $data = $query->row();
-				 $kode = intval($data->id_kelas) + 1; 
+				 $kode = intval($data->id_ruang) + 1; 
 			}
 			else{      
 				 $kode = 1;  

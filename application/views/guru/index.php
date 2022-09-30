@@ -52,25 +52,70 @@
                 <?= validation_errors(); ?>
                 <form action="<?= base_url() ?>DataGuru/validation_form" method="post" accept-charset="utf-8">
                   <div class="card-body">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label>Kode Guru</label>
                       <input type="text" class="form-control" name="id_gur">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label>Nama Guru</label>
                       <input type="text" class="form-control" name="nama_gur">
                     </div>
                     <div class="form-group">
-                      <label>Status Guru</label>
+                      <label>nip</label>
+                      <input type="text" class="form-control" name="nip_guru">
+                    </div>
+                    <div class="form-group">
+                      <label>pangkat</label>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="status_gur" value="honorer" placeholder="honorer" required>Guru Honorer
+                          <input type="radio" name="pangkat_gur" value="Pembina Tk. 1" placeholder="Pembina Tk. 1" required> Pembina Tk. 1
                         </label>
+                        &nbsp;&nbsp;&nbsp;
                         <label>
-                          <input type="radio" name="status_gur" value="tetap" placeholder="tetap" required>Guru Tetap
+                          <input type="radio" name="pangkat_gur" value="Pembina" placeholder="Pembina" required>Pembina
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Tk. 1" placeholder="Penata Tk. 1" required>Penata Tk. 1
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Muda Tk.1" placeholder="Penata Muda Tk.1" required>Penata Muda Tk.1
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Muda" placeholder="Penata Muda" required>Penata Muda
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Ahli Pertama" placeholder="Ahli Pertama" required>Ahli Pertama
                         </label>
                       </div>
                     </div>
+
+                    <div class="form-group">
+                      <label>Gol</label>
+                      <input type="text" class="form-control" name="gol_guru">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Status Guru</label>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="status_gur" value="PNS" placeholder="PNS" required> PNS
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="status_gur" value="GTT" placeholder="GTT" required>GTT
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="status_gur" value="PPPK" placeholder="PPPK" required>PPPK
+                        </label>
+                      </div>
+                    </div>
+
+                    
                     <div class="form-group">
                       <label>Pendidikan Guru</label>
                       <select class="form-control" name="pendidikan_gur">
@@ -96,10 +141,6 @@
                     <div class="form-group">
                       <label>Email Guru</label>
                       <input type="email" class="form-control" name="email_gur">
-                    </div>
-                    <div class="form-group">
-                      <label>Warna Guru</label>
-                      <input type="color" class="form-control" name="code_color">
                     </div>
 
                     <input type="submit" name="save" class="btn btn-primary" value="Save">
@@ -133,8 +174,8 @@
                   <th>Status Guru</th>
                   <th>Pendidikan Guru</th>
                   <th>Nomor Telpon Guru</th>
-                  <th>Email Guru</th>
-                  <th>Action</th>
+                  <!-- <th>Email Guru</th>
+                  <th>Action</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -142,14 +183,14 @@
                 $no = 1;
 
                 foreach ($guru as $row) { ?>
-                  <tr style="background-color: <?= $row->code_color ?>;">
+                  <tr>
                     <td><?= $no ?></td>
                     <td><?= $row->id_guru ?></td>
                     <td><?= $row->nama_guru ?></td>
                     <td><?= $row->status ?></td>
                     <td><?= $row->pendidikan_terakhir ?></td>
-                    <td><?= $row->no_telp ?></td>
-                    <td><?= $row->email ?></td>
+                    <!-- <td><?//= $row->no_telp ?></td>
+                    <td><?//= $row->email ?></td> -->
                     <td>
                       <div class="btn-group">
                         <a href="<?= base_url() ?>DataGuru/hapus/<?= $row->id_guru ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Hapus</a>

@@ -33,49 +33,325 @@
                 <form action="" method="post" accept-charset="utf-8">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Guru</label>
+                      <label for="exampleInput">Kode Guru</label>
                       <input type="text" class="form-control disabled" name="id_gur" value="<?= $ubah['id_guru'] ?>" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Nama Guru</label>
+                      <label for="exampleInput">Nama Guru</label>
                       <input type="text" class="form-control" name="nama_gur" value="<?= $ubah['nama_guru'] ?>">
                     </div>
+                    <div class="form-group">
+                      <label for="exampleInput">Nip</label>
+                      <input type="text" class="form-control" name="nip_guru" value="<?= $ubah['nip'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <?php
+                        switch ($ubah['pangkat']) {
+                          case 'Pembina Tk. 1':
+                              $cp1= "checked";
+                              $cp2= "";
+                              $cp3= "";
+                              $cp4= "";
+                              $cp5= "";
+                              $cp6= "";
+                            break;
+                          case 'Pembina':
+                              $cp1= "";
+                              $cp2= "checked";
+                              $cp3= "";
+                              $cp4= "";
+                              $cp5= "";
+                              $cp6= "";
+                            break;
+                          case 'Penata Tk. 1':
+                              $cp1= "";
+                              $cp2= "";
+                              $cp3= "checked";
+                              $cp4= "";
+                              $cp5= "";
+                              $cp6= "";
+                            break;
+                          case 'Penata Muda Tk.1':
+                              $cp1= "";
+                              $cp2= "";
+                              $cp3= "";
+                              $cp4= "checked";
+                              $cp5= "";
+                              $cp6= "";
+                            break;
+                          case 'Penata Muda':
+                              $cp1= "";
+                              $cp2= "";
+                              $cp3= "";
+                              $cp4= "";
+                              $cp5= "checked";
+                              $cp6= "";
+                            break;
+                          case 'Ahli Pertama':
+                              $cp1= "";
+                              $cp2= "";
+                              $cp3= "";
+                              $cp4= "";
+                              $cp5= "";
+                              $cp6= "checked";
+                            break;
+                        }
+                      ?>
+                      <label>Pangkat</label>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Pembina Tk. 1" placeholder="Pembina Tk. 1"  <?php echo $cp1; ?> required> Pembina Tk. 1
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Pembina" placeholder="Pembina" <?php echo $cp2; ?> required>Pembina
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Tk. 1" placeholder="Penata Tk. 1" <?php echo $cp3; ?> required>Penata Tk. 1
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Muda Tk.1" placeholder="Penata Muda Tk.1" <?php echo $cp4; ?> required>Penata Muda Tk.1
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Penata Muda" placeholder="Penata Muda" <?php echo $cp5; ?> required>Penata Muda
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="pangkat_gur" value="Ahli Pertama" placeholder="Ahli Pertama" <?php echo $cp6; ?> required>Ahli Pertama
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInput">Gol</label>
+                      <input type="text" class="form-control" name="gol_guru" value="<?= $ubah['gol'] ?>">
+                    </div>
+
                     <div class="form-group">
                       <label>Status Guru</label>
                       <div class="radio">
                         <?php
-                        if ($ubah['status'] == "honorer") {
-                          $checked1 = "checked";
-                          $checked2 = "";
-                        } else {
-                          $checked1 = "";
-                          $checked2 = "checked";
+                        if ($ubah['status'] == "PNS") {
+                          $cs1 = "checked";
+                          $cs2 = "";
+                          $cs3 = "";
+                        } else if($ubah['status'] == "GTT") {
+                          $cs1 = "";
+                          $cs2 = "checked";
+                          $cs3 = "";
+                        } else if($ubah['status'] == "PPPK") {
+                          $cs1 = "";
+                          $cs2 = "";
+                          $cs3 = "checked";
                         }
+
+
                         ?>
                         <label>
-                          <input type="radio" name="status_gur" value="honorer" <?php echo $checked1; ?> required>Guru Honorer
+                          <input type="radio" name="status_gur" value="PNS" placeholder="PNS" <?php echo $cs1; ?> required> PNS
                         </label>
+                        &nbsp;&nbsp;&nbsp;
                         <label>
-                          <input type="radio" name="status_gur" value="tetap" <?php echo $checked2; ?> required>Guru Tetap
+                          <input type="radio" name="status_gur" value="GTT" placeholder="GTT" <?php echo $cs2; ?> required>GTT
+                        </label>
+                        &nbsp;&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="status_gur" value="PPPK" placeholder="PPPK" <?php echo $cs3; ?> required>PPPK
                         </label>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Pendidikan Guru</label>
                       <select class="form-control" name="pendidikan_gur">
-                        <option value="">-----Pilih Hari-----</option>
-                        <option value="sd">SD</option>
-                        <option value="smp">SMP</option>
-                        <option value="sma">SMA</option>
-                        <option value="smk">SMK</option>
-                        <option value="d1">D1</option>
-                        <option value="d2">D2</option>
-                        <option value="d3">D3</option>
-                        <option value="d4">D4</option>
-                        <option value="s1">S1</option>
-                        <option value="s2">S2</option>
-                        <option value="s3">S3</option>
-                        <option value="s4">S4</option>
+                        <?php
+                          switch ($ubah['pendidikan_terakhir']) {
+                            case 'sd':
+                                $capengur1 = "selected" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'smp':
+                                $capengur1 = "" ;
+                                $capengur2 = "selected" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'sma':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "selected" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'smk':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "selected" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'd1':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "selected" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'd2':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "selected" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'd3':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "selected" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 'd4':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "selected" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 's1':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "selected" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 's2':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "selected" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 's3':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "selected" ;
+                                $capengur12 = "" ;
+                              break;
+                            case 's4':
+                                $capengur1 = "" ;
+                                $capengur2 = "" ;
+                                $capengur3 = "" ;
+                                $capengur4 = "" ;
+                                $capengur5 = "" ;
+                                $capengur6 = "" ;
+                                $capengur7 = "" ;
+                                $capengur8 = "" ;
+                                $capengur9 = "" ;
+                                $capengur10 = "" ;
+                                $capengur11 = "" ;
+                                $capengur12 = "selected" ;
+                              break;
+                            
+                          }
+                        ?>
+                        <option value="" >-----pilih-----</option>
+                        <option value="sd" <?= $capengur1 ?> >SD</option>
+                        <option value="smp" <?= $capengur2 ?> >SMP</option>
+                        <option value="sma" <?= $capengur3 ?> >SMA</option>
+                        <option value="smk" <?= $capengur4 ?> >SMK</option>
+                        <option value="d1" <?= $capengur5 ?> >D1</option>
+                        <option value="d2" <?= $capengur6 ?> >D2</option>
+                        <option value="d3" <?= $capengur7 ?> >D3</option>
+                        <option value="d4" <?= $capengur8 ?> >D4</option>
+                        <option value="s1" <?= $capengur9 ?> >S1</option>
+                        <option value="s2" <?= $capengur10 ?> >S2</option>
+                        <option value="s3" <?= $capengur11  ?> >S3</option>
+                        <option value="s4" <?= $capengur12 ?> >S4</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -85,10 +361,6 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Email Guru</label>
                       <input type="email" class="form-control" name="email_gur" value="<?= $ubah['email'] ?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Kode Warna</label>
-                      <input type="color" class="form-control" name="code_color" value="<?= $ubah['code_color'] ?>">
                     </div>
                     <a href="<?= base_url()?>DataGuru" class="btn btn-danger">Batal</a>
                     <input type="submit" name="save" class="btn btn-primary" value="Save">

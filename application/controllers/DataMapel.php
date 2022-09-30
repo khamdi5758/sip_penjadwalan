@@ -28,9 +28,16 @@ class DataMapel extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+	public function crcode(){
+		$code = $this->Mapel_Model->Createcode();
+		echo $code;
+	}
+
 
 	public function validation_form()
 	{
+		$this->form_validation->set_rules("nm_map", "Nama Mapel", "required");
+		$this->form_validation->set_rules("id_gur", "guru", "required");
 		$this->Mapel_Model->tambah_data();
 		$this->session->set_flashdata('flash_mapel', 'Disimpan');
 		redirect('DataMapel');

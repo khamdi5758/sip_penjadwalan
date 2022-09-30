@@ -10,16 +10,35 @@ class Guru_Model extends CI_Model
 		return $this->db->get('guru')->result();
 	}
 
+	public function CreateCode(){
+		$this->db->select('RIGHT(guru.id_guru,5) as id_guru', FALSE);
+		$this->db->order_by('id_guru','DESC');    
+		$this->db->limit(1);    
+		$query = $this->db->get('guru');
+			if($query->num_rows() <> 0){      
+				 $data = $query->row();
+				 $kode = intval($data->id_guru) + 1; 
+			}
+			else{      
+				 $kode = 1;  
+			}
+		$batas = str_pad($kode, 5, "0", STR_PAD_LEFT);    
+		$kodetampil = "gru".$batas;
+		return $kodetampil;  
+	}
+
 	public function tambah_data()
 	{
 		$data = array(
-			'id_guru' => $this->input->post('id_gur'),
+			'id_guru' => $this->CreateCode(),
 			'nama_guru' => $this->input->post('nama_gur'),
+			'nip' => $this->input->post('nip_guru'),
+			'pangkat' => $this->input->post('pangkat_gur'),
+			'gol' => $this->input->post('gol_guru'),
 			'status' => $this->input->post('status_gur'),
 			'pendidikan_terakhir' => $this->input->post('pendidikan_gur'),
 			'no_telp' => $this->input->post('telp_gur'),
-			'email' => $this->input->post('email_gur', true),
-			'code_color' => $this->input->post('code_color', true)
+			'email' => $this->input->post('email_gur')
 		);
 
 		$this->db->insert('guru', $data);
@@ -32,8 +51,7 @@ class Guru_Model extends CI_Model
 			'status' => $this->input->post('status_gur', true),
 			'pendidikan_terakhir' => $this->input->post('pendidikan_gur', true),
 			'no_telp' => $this->input->post('telp_gur', true),
-			'email' => $this->input->post('email_gur', true),
-			'code_color' => $this->input->post('code_color', true)
+			'email' => $this->input->post('email_gur', true)
 		);
 		$this->db->where('id_guru', $this->input->post('id_gur', true));
 		$this->db->update('guru', $data);

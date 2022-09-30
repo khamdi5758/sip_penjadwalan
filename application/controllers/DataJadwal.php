@@ -65,63 +65,36 @@ class DataJadwal extends CI_Controller
 		$this->form_validation->set_rules("mapel", "Nama mapel", "required");
 		$this->form_validation->set_rules("hari", "Nama hari", "required");
 		$this->form_validation->set_rules("jampel", "Jam ke ", "required");
+		$cekwaktu = $this->Jadwal_Model->cekwaktu();
+		$cekmapel = $this->Jadwal_Model->cekmapel();
+		$cekruang = $this->Jadwal_Model->cekruang();
+
 		if ($this->form_validation->run() == FALSE) {
 			$this->index();
 		} else {
-			$this->Jadwal_Model->insertData();
-			$this->session->set_flashdata('flash_jadwal', 'Disimpan');
-			redirect('DataJadwal');
-		}
-	}
-
-
-
-	public function cekjadwal()
-	{
-		$this->form_validation->set_rules("kelas", "Nama kelas", "required");
-		$this->form_validation->set_rules("ruang", "Nama ruang", "required");
-		$this->form_validation->set_rules("mapel", "Nama mapel", "required");
-		$this->form_validation->set_rules("hari", "Nama hari", "required");
-		$this->form_validation->set_rules("jampel", "Jam ke ", "required");
-		if ($this->form_validation->run() == FALSE) {
-			$this->index();
-		} else {
-			// $cekhari = $this->Jadwal_Model->cekhari();
-			// $cekjam = $this->Jadwal_Model->cekjam();
-			// $cekmapel = $this->Jadwal_Model->cekmapel();
-			// $cekruang = $this->Jadwal_Model->cekruang();
-			// $cekhari = 5;
-			// $cekjam = 5;
-			// $cekmapel = 10;
-			// $cekruang = 12;
-			// $kondisi1 = (!( ($cekhari>0)&&($cekjam>0) ));
-			// $kondisi2 = (!($kondisi1 xor $cekmapel>0));
-			// $kondisi3 = (!($kondisi2 xor $cekruang>0));
-			$cekjadwal = $this->Jadwal_Model->cekjadwal();
-			// if(!(!(!( ($cekhari>0)&&($cekjam>0) ))xor$cekmapel>0)xor$cekruang>0){
-
-			// }
-			// echo $cekhari." ".$cekjam." ".$cekmapel." ".$cekruang;
-			// $this->Jadwal_Model->insertData();
-			if (!($cekjadwal>0)) {
-				$this->session->set_flashdata('flash_jadwal','bisa diinput');
-				redirect('DataJadwal/indexcek');
-				// echo 'waktu bisa digunakan';
-				// if ($kondisi2) {
-				// 	echo ''
-				// }
-			}else{
-				$this->session->set_flashdata('flash_jadwal','tidak bisa diinput');
-				redirect('DataJadwal/indexcek');
-				// echo 'waktu sudah terisi';
+			if ($cekwaktu->num_rows()==0) {
+				echo "waktu bisa digunakan";
+				if ($cekmapel->num_rows()==0 || $cekmapel->num_rows()<4 ) {
+					echo "berhasil";
+						if ($cekruang->num_rows()==0) {
+							$this->Jadwal_Model->insertData();
+							$this->session->set_flashdata('flash_jadwal', 'Disimpan');
+							redirect('DataJadwal');
+						}else {
+							$this->session->set_flashdata('gagal', 'ruang tidak bisa digunakan');
+							redirect('DataJadwal');
+						}
+				}else {
+					$this->session->set_flashdata('gagal', 'mapel sudah ada');
+					redirect('DataJadwal');
+				}
+			}else {
+				$this->session->set_flashdata('gagal', 'waktu sudah digunakan');
+				redirect('DataJadwal');
 			}
-
-			// $this->session->set_flashdata('flash_jadwal',$cekhari." ".$cekjam." ".$cekmapel." ".$cekruang );
-			// redirect('DataJadwal/indexcek');
+			
 		}
 	}
-
-
 
 	public function ubah($id)
 	{
@@ -161,25 +134,137 @@ class DataJadwal extends CI_Controller
 	}
 
 	public function cekhari($hari){
-		$penjadwalan = $this->Jadwal_Model->cekhari($hari);
-		 echo $penjadwalan;
-		//  var_dump($penjadwalan);
+		$datajadwalbyhari = $this->Jadwal_Model->cekhari($hari);
+		//  echo $penjadwalan;
+		foreach ($datajadwalbyhari as $rowdata) {
+			// $rowdata['id_penjadwalan'];
+			echo $rowdata->id_penjadwalan;
+			echo $rowdata->id_kelas;
+			echo $rowdata->id_ruang;
+			echo $rowdata->id_mapel;
+			echo $rowdata->id_hari;
+			echo $rowdata->id_jampel;
+
+		}
+		//  var_dump($datajadwalbyhari);
 	}
+	
 	public function cekjam($jam){
 		$penjadwalan = $this->Jadwal_Model->cekjam($jam);
 		 echo $penjadwalan;
 		//  var_dump($penjadwalan);
 	}
+
 	public function cekmapel($mapel){
 		$penjadwalan = $this->Jadwal_Model->cekmapel($mapel);
 		 echo $penjadwalan;
 		//  var_dump($penjadwalan);
 	}
+
 	public function cekruang($ruang){
 		$penjadwalan = $this->Jadwal_Model->cekruang($ruang);
 		 echo $penjadwalan;
 		//  var_dump($penjadwalan);
 	}
+
+	// public function cekjadwal(){
+	// 	$this->form_validation->set_rules("kelas", "Nama kelas", "required");
+	// 	$this->form_validation->set_rules("ruang", "Nama ruang", "required");
+	// 	$this->form_validation->set_rules("mapel", "Nama mapel", "required");
+	// 	$this->form_validation->set_rules("hari", "Nama hari", "required");
+	// 	$this->form_validation->set_rules("jampel", "Jam ke ", "required");
+	// 	if ($this->form_validation->run() == FALSE) {
+	// 		$this->index();
+	// 	} else {
+	// 		// $cekhari = $this->Jadwal_Model->cekhari();
+	// 		// $cekjam = $this->Jadwal_Model->cekjam();
+	// 		// $cekmapel = $this->Jadwal_Model->cekmapel();
+	// 		// $cekruang = $this->Jadwal_Model->cekruang();
+	// 		// $cekhari = 5;
+	// 		// $cekjam = 5;
+	// 		// $cekmapel = 10;
+	// 		// $cekruang = 12;
+	// 		// $kondisi1 = (!( ($cekhari>0)&&($cekjam>0) ));
+	// 		// $kondisi2 = (!($kondisi1 xor $cekmapel>0));
+	// 		// $kondisi3 = (!($kondisi2 xor $cekruang>0));
+	// 		// $cekjadwal = $this->Jadwal_Model->cekjadwal();
+	// 		$cekwaktu = $this->Jadwal_Model->cekwaktu();
+	// 		$cekmapel = $this->Jadwal_Model->cekmapel();
+	// 		$cekruang = $this->Jadwal_Model->cekruang();
+
+	// 		if ($cekwaktu->num_rows()==0) {
+	// 			echo "waktu bisa digunakan";
+	// 			if ($cekmapel->num_rows()==0 || $cekmapel->num_rows()<4 ) {
+	// 				echo "berhasil";
+	// 					if ($cekruang->num_rows()==0) {
+	// 						$this->session->set_flashdata('flash_jadwal',"bisa");
+	// 						redirect('DataJadwal/indexcek');
+	// 						// echo "bisa digunakan";
+	// 					}else {
+	// 						$this->session->set_flashdata('gagal', 'ruang tidak bisa digunakan');
+	// 						redirect('DataJadwal/indexcek');
+	// 					}
+	// 			}else {
+	// 				$this->session->set_flashdata('gagal', 'mapel sudah ada');
+	// 				redirect('DataJadwal/indexcek');
+	// 			}
+	// 		}else {
+	// 			$this->session->set_flashdata('gagal', 'waktu sudah digunakan');
+	// 			redirect('DataJadwal/indexcek');
+	// 		}
+
+
+	// 		$hari = $this->input->post('hari',TRUE);
+	// 		$kelas = $this->input->post('kelas',TRUE);
+	// 		$jam = $this->input->post('jampel',TRUE);
+
+	// 		// echo $hari;
+	// 		// echo $kelas;
+	// 		// echo $jam;
+
+	// 		// $hari = $this->input->post('hari',TRUE);
+	// 		// $jampel = $this->input->post('jampel',TRUE);
+	// 		// foreach ($cekwaktu->result() as $rowdata) {
+	// 			// if ($rowdata->id_hari == $hari) {
+	// 			// 	echo "true";
+	// 			// }
+	// 			// if (($rowdata->id_hari == $hari) && ($rowdata->id_jampel==$jampel) ) {
+	// 			// 	echo "bisa digunakan ";
+	// 			// }else {
+	// 			// 	echo "jam sudah ada" ;
+	// 			// }
+	// 		// }
+	// 		// echo $rowdata->id_penjadwalan	;
+	// 		// echo $rowdata->id_kelas;
+	// 		// echo $rowdata->id_ruang;
+	// 		// echo $rowdata->id_mapel;
+	// 		// echo $rowdata->id_hari;
+	// 		// echo $rowdata->id_jampel;
+
+			
+	// 		// var_dump($cekwaktu);
+	// 		// if(!(!(!( ($cekhari>0)&&($cekjam>0) ))xor$cekmapel>0)xor$cekruang>0){
+
+	// 		// }
+	// 		// echo $cekhari." ".$cekjam." ".$cekmapel." ".$cekruang;
+	// 		// $this->Jadwal_Model->insertData();
+	// 		// if (!($cekjadwal>0)) {
+	// 		// 	$this->session->set_flashdata('flash_jadwal','bisa diinput');
+	// 		// 	redirect('DataJadwal/indexcek');
+	// 		// 	// echo 'waktu bisa digunakan';
+	// 		// 	// if ($kondisi2) {
+	// 		// 	// 	echo ''
+	// 		// 	// }
+	// 		// }else{
+	// 		// 	$this->session->set_flashdata('flash_jadwal','tidak bisa diinput');
+	// 		// 	redirect('DataJadwal/indexcek');
+	// 		// 	// echo 'waktu sudah terisi';
+	// 		// }
+
+	// 		// $this->session->set_flashdata('flash_jadwal',$cekhari." ".$cekjam." ".$cekmapel." ".$cekruang );
+	// 		// redirect('DataJadwal/indexcek');
+	// 	}
+	// }
 
 	// search jadwal Khusus 
 	// public function searchJadwalKhusus($array, $sesi, $hari, $kelas)

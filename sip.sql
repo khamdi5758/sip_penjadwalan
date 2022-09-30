@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Sep 2022 pada 00.11
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Generation Time: Sep 30, 2022 at 01:08 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,31 +24,64 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `guru`
+-- Table structure for table `guru`
 --
 
 CREATE TABLE `guru` (
   `id_guru` varchar(20) NOT NULL,
   `nama_guru` varchar(32) NOT NULL,
+  `nip` varchar(20) DEFAULT NULL,
+  `pangkat` varchar(50) DEFAULT NULL,
+  `gol` varchar(7) DEFAULT NULL,
   `status` varchar(10) NOT NULL,
   `pendidikan_terakhir` varchar(10) NOT NULL,
-  `no_telp` varchar(16) NOT NULL,
-  `email` varchar(32) NOT NULL,
-  `code_color` varchar(10) NOT NULL
+  `no_telp` varchar(16) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `guru`
+-- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`id_guru`, `nama_guru`, `status`, `pendidikan_terakhir`, `no_telp`, `email`, `code_color`) VALUES
-('1', 'Juki Irfansyah, S.Kom., M.Pd', 'tetap', 's2', '087', 'www@mail.com', '#f7d794'),
-('2', 'S. A. Adi Lukito, S.T', 'tetap', 's1', '085', 'www@mail.com', '#778beb');
+INSERT INTO `guru` (`id_guru`, `nama_guru`, `nip`, `pangkat`, `gol`, `status`, `pendidikan_terakhir`, `no_telp`, `email`) VALUES
+('gru00001', 'H. KAMUS.S.Pd.MM', '197104032000031004', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00002', 'Dra.Hj. Tatik rufiah', '196209211989032008', 'Pembina Tk. 1', 'IV/b', 'PNS', 's1', '', ''),
+('gru00003', 'Dra.  Hj. INDRI  SRIWULAN, MM', '19630107 199003 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00004', 'Dra. Hj.  WAHYUNING  KISMONO', '19650112 198903 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's1', '', ''),
+('gru00005', 'Drs.  PUTUT  HARIYANTO', '19630710 198903 1 02', 'Pembina Tk. 1', 'IV/b', 'PNS', 's1', '', ''),
+('gru00006', 'MUSTIPAH, SPd, MM', '19650220 198903 2 01', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00007', 'WORONINGSIH, SE, MM ', '19640602 198903 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00008', 'Hj. PUJI  KANTI  ASTUTI, SE, MM', '19651001 198903 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00009', 'GEMINIWATI, SE, MM', '19650713 198903 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00010', 'Dra. Hj. SRI INDAH ASNI WINARSIH', '19651116 199303 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's1', '', ''),
+('gru00011', 'ELISABETH ANDRIANINGTYAS, SE, MM', '19641209 199103 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00012', 'RISA RAHAYU, MPd', '19700318 199903 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00013', 'Drs. RACHMAD W, M.Pd', '19690109 199512 1 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00014', 'H. AKHIR  PURNOMO, SPd, MPd', '19730715 199601 1 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00015', 'ARIN YUNI PUSPORINI, SPd, MAK', '19710616 199512 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00016', 'SUGIYONO, SPd, MPd', '19720413 199601 1 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's2', '', ''),
+('gru00017', 'WIWIK  FATMAWATI, SPd', '19740705 199601 2 00', 'Pembina Tk. 1', 'IV/b', 'PNS', 's1', '', ''),
+('gru00018', 'BUDI  PRAPTONO, SPd', '19640627 198703 1 01', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00019', 'Drs.  PONANG  BIHANANTO', '19641127 199412 1 00', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00020', 'SILVIATI, SPd', '19681210 199301 2 00', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00021', 'HARI  EFFENDI, SPd, MPd', '19700514 199703 1 00', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00022', 'Hj. DWI  PURWATI, SPd', '19641008 200012 2 00', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00023', 'NURKHOLIS, SPd, MHI, MThI', '19730610 199802 1 00', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00024', 'Drs. AGUS MARDIARTO, MM', '19670812 200701 1 02', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00025', 'Drs. SUBIJANTO, MPd', '19640721 200701 1 01', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00026', 'Drs.  BAMBANG HERI SASONGKO, MM', '19630905 200701 1 01', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00027', 'Dra.  LILIK ANDIANI', '19630712 200701 2 00', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00028', 'RETNO INDRAWATI, SPd', '19750314 200012 2 00', 'Pembina', 'IV/a', 'PNS', 's1', '', ''),
+('gru00029', 'Hj. SRI INAH, SPd, MM', '19680919 200701 2 02', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00030', 'PUJI HASTUTI, SPd, MAK', '19670819 200801 2 00', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00031', 'Dra. KUSRIATIN, MM', '19680102 200801 2 00', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00032', 'Hj. TJATUR LIESTIJAWATI, SPd, MP', '19700826 200701 2 01', 'Pembina', 'IV/a', 'PNS', 's2', '', ''),
+('gru00033', 'Dra. TATIK MARGIATI', '19630903 200701 2 00', 'Pembina', 'IV/a', 'PNS', 's1', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hari`
+-- Table structure for table `hari`
 --
 
 CREATE TABLE `hari` (
@@ -57,7 +90,7 @@ CREATE TABLE `hari` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `hari`
+-- Dumping data for table `hari`
 --
 
 INSERT INTO `hari` (`id_hari`, `nama_hari`) VALUES
@@ -72,7 +105,7 @@ INSERT INTO `hari` (`id_hari`, `nama_hari`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal`
+-- Table structure for table `jadwal`
 --
 
 CREATE TABLE `jadwal` (
@@ -86,7 +119,7 @@ CREATE TABLE `jadwal` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal_khusus`
+-- Table structure for table `jadwal_khusus`
 --
 
 CREATE TABLE `jadwal_khusus` (
@@ -99,7 +132,7 @@ CREATE TABLE `jadwal_khusus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jadwal_khusus`
+-- Dumping data for table `jadwal_khusus`
 --
 
 INSERT INTO `jadwal_khusus` (`id_jadwal_khusus`, `kelas`, `keterangan`, `sesi`, `hari`, `durasi`) VALUES
@@ -165,7 +198,7 @@ INSERT INTO `jadwal_khusus` (`id_jadwal_khusus`, `kelas`, `keterangan`, `sesi`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jampel`
+-- Table structure for table `jampel`
 --
 
 CREATE TABLE `jampel` (
@@ -175,7 +208,7 @@ CREATE TABLE `jampel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jampel`
+-- Dumping data for table `jampel`
 --
 
 INSERT INTO `jampel` (`id_jampel`, `jamke`, `waktu`) VALUES
@@ -196,7 +229,7 @@ INSERT INTO `jampel` (`id_jampel`, `jamke`, `waktu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -205,18 +238,29 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 ('jrs00001', 'MULTIMEDIA'),
 ('jrs00002', 'REKAYASA PERANGKAT LUNAK'),
-('jrs00003', 'DESAIN KOMUNIKASI VISUAL');
+('jrs00003', 'DESAIN KOMUNIKASI VISUAL'),
+('jrs00004', 'FARMASI KLINIS dan KOMUNITAS'),
+('jrs00005', 'Bisnis Retail'),
+('jrs00006', 'Manajemen Perkantoran'),
+('jrs00007', 'Akutansi'),
+('jrs00008', 'Layanan Perbankan'),
+('jrs00009', 'Usaha Layanan Wisata'),
+('jrs00010', 'Bisnis Daring dan Pemasaran'),
+('jrs00011', 'Otomatisasi dan Tata Kelola Perk'),
+('jrs00012', 'Akutansi dan Keuangan Lembaga'),
+('jrs00013', 'Perbankan dan Keuangan Mikro'),
+('jrs00014', 'Usaha Perjalanan Wisata');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -226,7 +270,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id_kelas`, `kelas`, `id_jurusan`) VALUES
@@ -237,12 +281,77 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `id_jurusan`) VALUES
 ('kls00005', 'X RPL 1', 'jrs00002'),
 ('kls00006', 'X RPL 2', 'jrs00002'),
 ('kls00007', 'X DKV 1', 'jrs00003'),
-('kls00008', 'X DKV 2', 'jrs00003');
+('kls00008', 'X DKV 2', 'jrs00003'),
+('kls00009', 'X FKK 1', 'jrs00004'),
+('kls00010', 'X FKK 2', 'jrs00004'),
+('kls00011', 'X BR 1', 'jrs00005'),
+('kls00012', 'X BR 2', 'jrs00005'),
+('kls00013', 'X BR 3', 'jrs00005'),
+('kls00014', 'X BR 4', 'jrs00005'),
+('kls00015', 'X MPK 1', 'jrs00006'),
+('kls00016', 'X MPK 2', 'jrs00006'),
+('kls00017', 'X MPK 3', 'jrs00006'),
+('kls00018', 'X MPK 4', 'jrs00006'),
+('kls00019', 'X AK 1', 'jrs00007'),
+('kls00020', 'X AK 2', 'jrs00007'),
+('kls00021', 'X AK 3', 'jrs00007'),
+('kls00022', 'X AK 4', 'jrs00006'),
+('kls00023', 'X LPB 1', 'jrs00008'),
+('kls00024', 'X LPB 2', 'jrs00008'),
+('kls00025', 'X LPB 3', 'jrs00008'),
+('kls00026', 'X LPB 4', 'jrs00008'),
+('kls00027', 'X ULW 1', 'jrs00009'),
+('kls00028', 'X ULW 2', 'jrs00009'),
+('kls00029', 'X AK 4', 'jrs00007'),
+('kls00030', 'XI FKK 1', 'jrs00004'),
+('kls00031', 'XI FKK 2', 'jrs00004'),
+('kls00032', 'XI BDP 1', 'jrs00010'),
+('kls00033', 'XI BDP 2', 'jrs00010'),
+('kls00034', 'XI BDP 3', 'jrs00010'),
+('kls00035', 'XI BDP 4', 'jrs00010'),
+('kls00036', 'XI OTKP 1', 'jrs00011'),
+('kls00037', 'XI OTKP 2', 'jrs00011'),
+('kls00038', 'XI OTKP 3', 'jrs00011'),
+('kls00039', 'XI OTKP 4', 'jrs00011'),
+('kls00040', 'XI AKL 1', 'jrs00012'),
+('kls00041', 'XI AKL 2', 'jrs00012'),
+('kls00042', 'XI AKL 3', 'jrs00012'),
+('kls00043', 'XI AKL 4', 'jrs00012'),
+('kls00044', 'XI PKM 1', 'jrs00013'),
+('kls00045', 'XI PKM 2', 'jrs00013'),
+('kls00046', 'XI PKM 3', 'jrs00013'),
+('kls00047', 'XI PKM 4', 'jrs00013'),
+('kls00048', 'XI UPW 1', 'jrs00014'),
+('kls00049', 'XI UPW 2', 'jrs00014'),
+('kls00050', 'XII MM 1', 'jrs00001'),
+('kls00051', 'XII MM 2', 'jrs00001'),
+('kls00052', 'XII MM 3', 'jrs00001'),
+('kls00053', 'XII MM 4', 'jrs00001'),
+('kls00054', 'XII FKK 1', 'jrs00004'),
+('kls00055', 'XII FKK 2', 'jrs00004'),
+('kls00056', 'XII BDP 1', 'jrs00010'),
+('kls00057', 'XII BDP 2', 'jrs00010'),
+('kls00058', 'XII BDP 3', 'jrs00010'),
+('kls00059', 'XII BDP 4', 'jrs00010'),
+('kls00060', 'XII OTKP 1', 'jrs00011'),
+('kls00061', 'XII OTKP 2', 'jrs00011'),
+('kls00062', 'XII OTKP 3', 'jrs00011'),
+('kls00063', 'XII OTKP 4', 'jrs00011'),
+('kls00064', 'XII AKL 1', 'jrs00012'),
+('kls00065', 'XII AKL 2', 'jrs00012'),
+('kls00066', 'XII AKL 3', 'jrs00012'),
+('kls00067', 'XII AKL 4', 'jrs00012'),
+('kls00068', 'XII PKM 1', 'jrs00013'),
+('kls00069', 'XII PKM 2', 'jrs00013'),
+('kls00070', 'XII PKM 3', 'jrs00013'),
+('kls00071', 'XII PKM 4', 'jrs00013'),
+('kls00072', 'XII UPW 1', 'jrs00014'),
+('kls00073', 'XII UPW 2', 'jrs00014');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mapel`
+-- Table structure for table `mapel`
 --
 
 CREATE TABLE `mapel` (
@@ -252,17 +361,18 @@ CREATE TABLE `mapel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mapel`
+-- Dumping data for table `mapel`
 --
 
 INSERT INTO `mapel` (`id_mapel`, `nama_mapel`, `id_guru`) VALUES
-('3492', 'informatika', '2'),
-('86', 'Bahasa Inggris', '1');
+('mpl00001', 'bahasa indonesia', 'gru00012'),
+('mpl00002', 'matematika', 'gru00019'),
+('mpl00003', 'matematika', 'gru00020');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjadwalan`
+-- Table structure for table `penjadwalan`
 --
 
 CREATE TABLE `penjadwalan` (
@@ -275,19 +385,19 @@ CREATE TABLE `penjadwalan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `penjadwalan`
+-- Dumping data for table `penjadwalan`
 --
 
 INSERT INTO `penjadwalan` (`id_penjadwalan`, `id_kelas`, `id_ruang`, `id_mapel`, `id_hari`, `id_jampel`) VALUES
-('jdwl00004', 'kls00001', 'rag00001', '3492', 1, 4),
-('jdwl00001', 'kls00001', 'rag00001', '86', 1, 1),
-('jdwl00002', 'kls00001', 'rag00001', '86', 1, 2),
-('jdwl00003', 'kls00001', 'rag00001', '86', 1, 3);
+('jdwl00001', 'kls00001', 'rag00001', 'mpl00001', 1, 1),
+('jdwl00002', 'kls00001', 'rag00001', 'mpl00001', 1, 2),
+('jdwl00003', 'kls00001', 'rag00001', 'mpl00001', 1, 3),
+('jdwl00004', 'kls00001', 'rag00001', 'mpl00001', 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `request_jadwal`
+-- Table structure for table `request_jadwal`
 --
 
 CREATE TABLE `request_jadwal` (
@@ -297,7 +407,7 @@ CREATE TABLE `request_jadwal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `request_jadwal`
+-- Dumping data for table `request_jadwal`
 --
 
 INSERT INTO `request_jadwal` (`id_request`, `id_guru`, `hari`) VALUES
@@ -315,7 +425,7 @@ INSERT INTO `request_jadwal` (`id_request`, `id_guru`, `hari`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ruang`
+-- Table structure for table `ruang`
 --
 
 CREATE TABLE `ruang` (
@@ -325,16 +435,81 @@ CREATE TABLE `ruang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `ruang`
+-- Dumping data for table `ruang`
 --
 
 INSERT INTO `ruang` (`id_ruang`, `nama_ruang`, `kapasitas`) VALUES
-('rag00001', 'banana 1', '29');
+('rag00001', 'R. ANGGREK 1', '40'),
+('rag00002', 'R. ANGGREK 2', '40'),
+('rag00003', 'R. TANJUNG 1', '40'),
+('rag00004', 'R. TANJUNG 2', '40'),
+('rag00005', 'R. CERME 1', '40'),
+('rag00006', 'R. CERME 2', '40'),
+('rag00007', 'R. PALEM 1', '40'),
+('rag00008', 'R. PALEM 2', '40'),
+('rag00009', 'R. PALEM 3', '40'),
+('rag00010', 'R. PALEM 4', '40'),
+('rag00011', 'R. SONO 1', '40'),
+('rag00012', 'R. SONO 2', '40'),
+('rag00013', 'R. PISANG KIPAS', '40'),
+('rag00014', 'R. NANGKA 1', '40'),
+('rag00015', 'R. NANGKA 2', '40'),
+('rag00016', 'R. NANGKA 3', '40'),
+('rag00017', 'R. NANGKA 4', '40'),
+('rag00018', 'R. JAMBU 1', '40'),
+('rag00019', 'R. JAMBU 2', '40'),
+('rag00020', 'R. JAMBU 3', '40'),
+('rag00021', 'R. SENSIVERA 1', '40'),
+('rag00022', 'R. SENSIVERA 2', '40'),
+('rag00023', 'R. SENSIVERA 3', '40'),
+('rag00024', 'R. SENSIVERA 4', '40'),
+('rag00025', 'R. PRAKTIK OTKP', '40'),
+('rag00026', 'R. PURING 1', '40'),
+('rag00027', 'R. PURING 2', '40'),
+('rag00028', 'R. PURING 3', '40'),
+('rag00029', 'R. PURING 4', '40'),
+('rag00030', 'R. PURING 5', '40'),
+('rag00031', 'R. BLIMBING 1', '40'),
+('rag00032', 'R. BLIMBING 2', '40'),
+('rag00033', 'R. BLIMBING 3', '40'),
+('rag00034', 'R. KEROHANIAN', '40'),
+('rag00035', 'R. MANGGA 1', '40'),
+('rag00036', 'R. MANGGA 2', '40'),
+('rag00037', 'R. MANGGA 3', '40'),
+('rag00038', 'LAB. KOMP. MMA', '40'),
+('rag00039', 'LAB. KOMP. MMB', '40'),
+('rag00040', 'LAB. KOMP. BDP', '40'),
+('rag00041', 'LAB. KOMP. OTKP', '40'),
+('rag00042', 'LAB. KOMP. ATW', '40'),
+('rag00043', 'LAB. KOMP. AKL', '40'),
+('rag00044', 'LAB. STW', '40'),
+('rag00045', 'LAB. KOMP. PKM', '40'),
+('rag00046', 'LAB. PRAKTIK BANK', '40'),
+('rag00047', 'LAB. PRAKTIK APK', '40'),
+('rag00048', 'R. TERAS MASJID 1', '40'),
+('rag00049', 'R. TERAS MASJID 2', '40'),
+('rag00050', 'R. TERAS MASJID 3', '40'),
+('rag00051', 'R. TERAS MASJID 4', '40'),
+('rag00052', 'R. GAZEBO PERPUS', '40'),
+('rag00053', 'R. PERPUS', '40'),
+('rag00054', 'R. APUNG 1', '40'),
+('rag00055', 'R. APUNG 2', '40'),
+('rag00056', 'R. LAB. TENIS', '40'),
+('rag00057', 'R. AULA 1', '40'),
+('rag00058', 'R. AULA 2', '40'),
+('rag00059', 'R. AULA 4', '40'),
+('rag00060', 'R. APUNG 3', '40'),
+('rag00061', 'RPS MM', '40'),
+('rag00062', 'RPS BDP', '40'),
+('rag00063', 'R. PALEM 6.b', '40'),
+('rag00064', 'STUDIO', '40'),
+('rag00065', 'PERAKITAN MM', '40'),
+('rag00066', 'RUANG PBK', '40');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rumusan`
+-- Table structure for table `rumusan`
 --
 
 CREATE TABLE `rumusan` (
@@ -348,7 +523,7 @@ CREATE TABLE `rumusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `rumusan`
+-- Dumping data for table `rumusan`
 --
 
 INSERT INTO `rumusan` (`id_rumusan`, `id_guru`, `hari_request`, `kelas`, `total`, `beban_kerja`, `hasil_rumusan`) VALUES
@@ -381,7 +556,7 @@ INSERT INTO `rumusan` (`id_rumusan`, `id_guru`, `hari_request`, `kelas`, `total`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tugas_guru`
+-- Table structure for table `tugas_guru`
 --
 
 CREATE TABLE `tugas_guru` (
@@ -397,7 +572,7 @@ CREATE TABLE `tugas_guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tugas_guru`
+-- Dumping data for table `tugas_guru`
 --
 
 INSERT INTO `tugas_guru` (`id_tugas`, `id_guru`, `id_mapel`, `kode_mapel`, `id_kelas`, `tahun_ajaran`, `sisa_jam`, `status`, `beban_jam`) VALUES
@@ -502,7 +677,7 @@ INSERT INTO `tugas_guru` (`id_tugas`, `id_guru`, `id_mapel`, `kode_mapel`, `id_k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -513,7 +688,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
@@ -525,57 +700,57 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 --
 
 --
--- Indeks untuk tabel `guru`
+-- Indexes for table `guru`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`id_guru`);
 
 --
--- Indeks untuk tabel `hari`
+-- Indexes for table `hari`
 --
 ALTER TABLE `hari`
   ADD PRIMARY KEY (`id_hari`);
 
 --
--- Indeks untuk tabel `jadwal`
+-- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`id_jadwal`);
 
 --
--- Indeks untuk tabel `jadwal_khusus`
+-- Indexes for table `jadwal_khusus`
 --
 ALTER TABLE `jadwal_khusus`
   ADD PRIMARY KEY (`id_jadwal_khusus`);
 
 --
--- Indeks untuk tabel `jampel`
+-- Indexes for table `jampel`
 --
 ALTER TABLE `jampel`
   ADD PRIMARY KEY (`id_jampel`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indeks untuk tabel `kelas`
+-- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id_kelas`),
   ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
--- Indeks untuk tabel `mapel`
+-- Indexes for table `mapel`
 --
 ALTER TABLE `mapel`
   ADD PRIMARY KEY (`id_mapel`),
   ADD KEY `id_guru` (`id_guru`);
 
 --
--- Indeks untuk tabel `penjadwalan`
+-- Indexes for table `penjadwalan`
 --
 ALTER TABLE `penjadwalan`
   ADD PRIMARY KEY (`id_penjadwalan`),
@@ -586,26 +761,26 @@ ALTER TABLE `penjadwalan`
   ADD KEY `id_hari` (`id_hari`);
 
 --
--- Indeks untuk tabel `request_jadwal`
+-- Indexes for table `request_jadwal`
 --
 ALTER TABLE `request_jadwal`
   ADD PRIMARY KEY (`id_request`),
   ADD KEY `id_guru` (`id_guru`);
 
 --
--- Indeks untuk tabel `ruang`
+-- Indexes for table `ruang`
 --
 ALTER TABLE `ruang`
   ADD PRIMARY KEY (`id_ruang`);
 
 --
--- Indeks untuk tabel `rumusan`
+-- Indexes for table `rumusan`
 --
 ALTER TABLE `rumusan`
   ADD PRIMARY KEY (`id_rumusan`);
 
 --
--- Indeks untuk tabel `tugas_guru`
+-- Indexes for table `tugas_guru`
 --
 ALTER TABLE `tugas_guru`
   ADD PRIMARY KEY (`id_tugas`),
@@ -614,57 +789,57 @@ ALTER TABLE `tugas_guru`
   ADD KEY `id_kelas` (`id_kelas`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal`
+-- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
   MODIFY `id_jadwal` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal_khusus`
+-- AUTO_INCREMENT for table `jadwal_khusus`
 --
 ALTER TABLE `jadwal_khusus`
   MODIFY `id_jadwal_khusus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT untuk tabel `request_jadwal`
+-- AUTO_INCREMENT for table `request_jadwal`
 --
 ALTER TABLE `request_jadwal`
   MODIFY `id_request` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `rumusan`
+-- AUTO_INCREMENT for table `rumusan`
 --
 ALTER TABLE `rumusan`
   MODIFY `id_rumusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `kelas`
+-- Constraints for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
 
 --
--- Ketidakleluasaan untuk tabel `penjadwalan`
+-- Constraints for table `penjadwalan`
 --
 ALTER TABLE `penjadwalan`
   ADD CONSTRAINT `penjadwalan_ibfk_2` FOREIGN KEY (`id_ruang`) REFERENCES `ruang` (`id_ruang`),
